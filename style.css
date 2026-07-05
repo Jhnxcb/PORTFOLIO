@@ -673,17 +673,20 @@ a {
     backdrop-filter: blur(16px);
 }
 
-.video-modal.is-open {
+.video-modal.is-open,
+.image-modal.is-open {
     display: grid;
 }
 
-.video-modal-content {
+.video-modal-content,
+.image-modal-content {
     display: grid;
     gap: 16px;
     width: min(100%, 1120px);
 }
 
-.video-modal-title {
+.video-modal-title,
+.image-modal-title {
     color: var(--light);
     font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
     font-size: clamp(1.6rem, 4vw, 3.4rem);
@@ -712,7 +715,46 @@ a {
     border: 0;
 }
 
-.video-modal-close {
+.image-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    place-items: center;
+    padding: clamp(18px, 4vw, 48px);
+    background: rgba(30, 32, 34, 0.94);
+    backdrop-filter: blur(16px);
+}
+
+.image-modal-content {
+    width: min(100%, 920px);
+}
+
+.image-modal-preview {
+    display: grid;
+    place-items: center;
+    min-height: min(72vh, 720px);
+    overflow: hidden;
+    border: 1px solid rgba(197, 180, 163, 0.35);
+    border-radius: 8px;
+    background: rgba(244, 238, 232, 0.055);
+    box-shadow: var(--shadow);
+}
+
+.image-modal-preview .card-img {
+    width: 100%;
+    min-height: min(72vh, 720px);
+    border: 0;
+    border-radius: 0;
+    cursor: default;
+}
+
+.image-modal-preview .card-img img {
+    object-fit: contain;
+}
+
+.video-modal-close,
+.image-modal-close {
     position: absolute;
     top: clamp(14px, 3vw, 28px);
     right: clamp(14px, 3vw, 28px);
@@ -729,19 +771,48 @@ a {
     text-transform: uppercase;
 }
 
-.video-modal-close:hover {
+.video-modal-close:hover,
+.image-modal-close:hover {
     border-color: rgba(197, 180, 163, 0.8);
 }
 
 .card-img {
     display: flex;
+    width: 100%;
     min-height: 250px;
     align-items: end;
     padding: 20px;
+    border: 0;
     color: rgba(244, 238, 232, 0.86);
+    cursor: default;
+    font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
     font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 900;
     line-height: 0.95;
+    text-align: left;
+}
+
+.card-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-preview {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    appearance: none;
+    cursor: zoom-in;
+}
+
+.media-only .image-preview,
+.portfolio-card .image-preview {
+    min-height: 0;
+}
+
+.image-preview:hover {
+    filter: brightness(1.08);
 }
 
 .card-img-video {
@@ -949,6 +1020,11 @@ a {
 
     .media-only .card-img {
         min-height: 260px;
+    }
+
+    .media-only .image-preview,
+    .portfolio-card .image-preview {
+        min-height: 0;
     }
 
     .video-grid {

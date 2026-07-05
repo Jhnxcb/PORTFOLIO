@@ -285,7 +285,9 @@
                 </div>
                 <div class="portfolio-grid">
                     <article class="portfolio-card media-only">
-                        <div class="card-img card-img-pubmat"><span>Poster</span></div>
+                        <button class="card-img card-img-pubmat image-preview" type="button" data-preview-title="Event Poster Layouts">
+                            <span>Poster</span>
+                        </button>
                         <div class="card-content">
                             <span class="card-tag">Graphic Design</span>
                             <h4>Event Poster Layouts</h4>
@@ -293,7 +295,9 @@
                         </div>
                     </article>
                     <article class="portfolio-card media-only">
-                        <div class="card-img card-img-social"><span>Social</span></div>
+                        <button class="card-img card-img-social image-preview" type="button" data-preview-title="Digital Post Templates">
+                            <span>Social</span>
+                        </button>
                         <div class="card-content">
                             <span class="card-tag">Social Media</span>
                             <h4>Digital Post Templates</h4>
@@ -313,7 +317,9 @@
                 </div>
                 <div class="portfolio-grid">
                     <article class="portfolio-card">
-                        <div class="card-img card-img-press"><span>Press</span></div>
+                        <button class="card-img card-img-press image-preview" type="button" data-preview-title="South Quill Coverage">
+                            <span>Press</span>
+                        </button>
                         <div class="card-content">
                             <span class="card-tag">Photojournalism</span>
                             <h4>South Quill Coverage</h4>
@@ -321,7 +327,9 @@
                         </div>
                     </article>
                     <article class="portfolio-card">
-                        <div class="card-img card-img-tech"><span>AV</span></div>
+                        <button class="card-img card-img-tech image-preview" type="button" data-preview-title="Live Production Support">
+                            <span>AV</span>
+                        </button>
                         <div class="card-content">
                             <span class="card-tag">Technical Support</span>
                             <h4>Live Production Support</h4>
@@ -357,11 +365,23 @@
         </div>
     </div>
 
+    <div class="image-modal" aria-hidden="true" role="dialog" aria-label="Expanded sample preview">
+        <button class="image-modal-close" type="button" aria-label="Close expanded sample">Close</button>
+        <div class="image-modal-content">
+            <h2 class="image-modal-title">Sample Preview</h2>
+            <div class="image-modal-preview"></div>
+        </div>
+    </div>
+
     <script>
         const videoModal = document.querySelector(".video-modal");
         const videoModalPlayer = document.querySelector(".video-modal-player");
         const videoModalTitle = document.querySelector(".video-modal-title");
         const videoModalClose = document.querySelector(".video-modal-close");
+        const imageModal = document.querySelector(".image-modal");
+        const imageModalPreview = document.querySelector(".image-modal-preview");
+        const imageModalTitle = document.querySelector(".image-modal-title");
+        const imageModalClose = document.querySelector(".image-modal-close");
 
         document.querySelectorAll(".video-tile").forEach((tile) => {
             const expandButton = tile.querySelector(".expand-video");
@@ -390,13 +410,41 @@
             document.body.classList.remove("modal-open");
         };
 
+        document.querySelectorAll(".image-preview").forEach((preview) => {
+            preview.addEventListener("click", () => {
+                const expandedPreview = document.createElement("div");
+                expandedPreview.className = preview.className.replace("image-preview", "").trim();
+                expandedPreview.innerHTML = preview.innerHTML;
+
+                imageModalPreview.replaceChildren(expandedPreview);
+                imageModalTitle.textContent = preview.dataset.previewTitle || "Sample Preview";
+                imageModal.classList.add("is-open");
+                imageModal.setAttribute("aria-hidden", "false");
+                document.body.classList.add("modal-open");
+            });
+        });
+
+        const closeImageModal = () => {
+            imageModal.classList.remove("is-open");
+            imageModal.setAttribute("aria-hidden", "true");
+            imageModalPreview.replaceChildren();
+            document.body.classList.remove("modal-open");
+        };
+
         videoModalClose.addEventListener("click", closeVideoModal);
         videoModal.addEventListener("click", (event) => {
             if (event.target === videoModal) closeVideoModal();
         });
+        imageModalClose.addEventListener("click", closeImageModal);
+        imageModal.addEventListener("click", (event) => {
+            if (event.target === imageModal) closeImageModal();
+        });
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape" && videoModal.classList.contains("is-open")) {
                 closeVideoModal();
+            }
+            if (event.key === "Escape" && imageModal.classList.contains("is-open")) {
+                closeImageModal();
             }
         });
     </script>
