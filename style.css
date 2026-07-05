@@ -380,11 +380,13 @@ a {
 
 .tools-section {
     border-bottom: 1px solid var(--line);
+    overflow: hidden;
 }
 
 .tool-cloud {
     position: relative;
-    overflow: hidden;
+    contain: layout paint;
+    overflow: clip;
     padding-block: 12px;
 }
 
@@ -471,26 +473,106 @@ a {
 
 .samples-section {
     display: grid;
-    gap: 54px;
+    gap: 42px;
+}
+
+.sample-overview {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.sample-jump-card {
+    display: grid;
+    min-height: 150px;
+    align-content: space-between;
+    gap: 12px;
+    padding: 22px;
+    color: inherit;
+    border: 1px solid rgba(244, 238, 232, 0.16);
+    border-radius: 8px;
+    background: rgba(244, 238, 232, 0.07);
+    text-decoration: none;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.sample-jump-card:hover {
+    border-color: rgba(197, 180, 163, 0.62);
+    background: rgba(244, 238, 232, 0.1);
+    transform: translateY(-3px);
+}
+
+.sample-jump-card span,
+.sample-subheading span {
+    color: var(--sage);
+    font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.sample-jump-card strong {
+    color: var(--light);
+    font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+    font-size: 1.22rem;
+    line-height: 1.1;
+}
+
+.sample-jump-card small,
+.block-heading p,
+.sample-subheading p {
+    color: rgba(244, 238, 232, 0.66);
+    font-size: 0.95rem;
 }
 
 .sample-block {
     display: grid;
-    gap: 18px;
+    gap: 22px;
+    padding-top: 8px;
 }
 
 .block-heading {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     justify-content: space-between;
     gap: 20px;
     border-bottom: 1px solid var(--line);
     padding-bottom: 14px;
 }
 
+.block-heading > div {
+    display: grid;
+    gap: 8px;
+}
+
 .block-heading h3 {
     color: var(--light);
     font-size: clamp(1.45rem, 3vw, 2.2rem);
+    line-height: 1;
+}
+
+.block-heading p {
+    max-width: 360px;
+    text-align: right;
+}
+
+.sample-subgroup {
+    display: grid;
+    gap: 14px;
+}
+
+.sample-subheading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 0 2px;
+}
+
+.sample-subheading p {
+    max-width: 360px;
+    text-align: right;
 }
 
 .portfolio-grid {
@@ -517,8 +599,13 @@ a {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 18px;
+}
+
+.video-tile {
+    padding: 12px;
+    background: rgba(244, 238, 232, 0.055);
 }
 
 .video-tile .card-img {
@@ -568,6 +655,7 @@ a {
 
 .video-tile h4 {
     margin-top: 12px;
+    min-height: 24px;
     color: var(--light);
     font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
     font-size: 0.94rem;
@@ -809,6 +897,7 @@ a {
 @media (max-width: 900px) {
     .studio-intro,
     .hero,
+    .sample-overview,
     .portfolio-grid,
     .contact-grid {
         grid-template-columns: 1fr;
@@ -866,6 +955,22 @@ a {
         grid-template-columns: 1fr;
     }
 
+    .sample-jump-card {
+        min-height: 128px;
+    }
+
+    .block-heading,
+    .sample-subheading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .block-heading p,
+    .sample-subheading p {
+        max-width: none;
+        text-align: left;
+    }
+
     .experience-grid,
     .timeline-list {
         grid-template-columns: 1fr;
@@ -901,11 +1006,6 @@ a {
     .tool-logo-wide img {
         width: 216px;
         height: 88px;
-    }
-
-    .block-heading {
-        align-items: start;
-        flex-direction: column;
     }
 
     .contact-orbit {
