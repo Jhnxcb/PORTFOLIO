@@ -16,7 +16,13 @@
             <img class="brand-logo" src="studio-cove-logo.png" alt="The Studio Cove logo">
         </a>
 
-        <div class="nav-links">
+        <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
             <a href="#samples">Samples</a>
@@ -423,6 +429,24 @@
         };
 
         loadSiteContent();
+
+        const navbar = document.querySelector(".navbar");
+        const navToggle = document.querySelector(".nav-toggle");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        navToggle.addEventListener("click", () => {
+            const isOpen = navbar.classList.toggle("is-open");
+            navToggle.setAttribute("aria-expanded", String(isOpen));
+            navToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+        });
+
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                navbar.classList.remove("is-open");
+                navToggle.setAttribute("aria-expanded", "false");
+                navToggle.setAttribute("aria-label", "Open navigation menu");
+            });
+        });
 
         const videoModal = document.querySelector(".video-modal");
         const videoModalPlayer = document.querySelector(".video-modal-player");
