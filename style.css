@@ -597,15 +597,36 @@ a {
     min-height: 360px;
 }
 
-.video-grid {
+.video-carousel {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 18px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: center;
+}
+
+.video-carousel-window {
+    overflow: hidden;
+    border: 1px solid rgba(244, 238, 232, 0.12);
+    border-radius: 8px;
+    background: rgba(244, 238, 232, 0.045);
+}
+
+.video-grid {
+    display: flex;
+    transition: transform 260ms ease;
 }
 
 .video-tile {
+    display: grid;
+    flex: 0 0 100%;
+    gap: 12px;
     padding: 12px;
     background: rgba(244, 238, 232, 0.055);
+}
+
+.video-tile:hover {
+    transform: none;
 }
 
 .video-tile .card-img {
@@ -613,6 +634,9 @@ a {
 }
 
 .video-player {
+    display: grid;
+    place-items: center;
+    min-height: clamp(280px, 52vw, 560px);
     overflow: hidden;
     border: 1px solid rgba(197, 180, 163, 0.28);
     border-radius: 8px;
@@ -621,7 +645,7 @@ a {
 }
 
 .video-player-portrait {
-    width: min(100%, 220px);
+    width: min(100%, 315px);
     margin-inline: auto;
     aspect-ratio: 9 / 16;
 }
@@ -631,6 +655,55 @@ a {
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+.video-player:not(.video-player-portrait) iframe {
+    max-height: min(56vw, 560px);
+}
+
+.carousel-control {
+    display: inline-flex;
+    width: 58px;
+    min-height: 58px;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    border: 1px solid rgba(197, 180, 163, 0.38);
+    border-radius: 999px;
+    background: rgba(244, 238, 232, 0.07);
+    cursor: pointer;
+    font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: border-color var(--transition), background var(--transition), transform var(--transition);
+}
+
+.carousel-control:hover {
+    border-color: rgba(197, 180, 163, 0.72);
+    background: rgba(244, 238, 232, 0.1);
+    transform: translateY(-2px);
+}
+
+.carousel-dots {
+    display: flex;
+    grid-column: 2;
+    justify-content: center;
+    gap: 8px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgba(197, 180, 163, 0.58);
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.carousel-dot.is-active {
+    background: var(--sage);
 }
 
 .expand-video {
@@ -1027,8 +1100,27 @@ a {
         min-height: 0;
     }
 
-    .video-grid {
-        grid-template-columns: 1fr;
+    .video-carousel {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .video-carousel-window {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .carousel-control {
+        width: 100%;
+        min-height: 46px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        grid-row: 2;
+    }
+
+    .carousel-dots {
+        grid-column: 1 / -1;
     }
 
     .sample-jump-card {
