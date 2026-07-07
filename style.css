@@ -666,15 +666,44 @@ a {
 }
 
 .video-tile {
+    position: relative;
     display: grid;
     flex: 0 0 100%;
     gap: 12px;
     padding: 12px;
     background: rgba(244, 238, 232, 0.055);
+    isolation: isolate;
 }
 
 .video-tile:hover {
     transform: none;
+}
+
+.video-tile::before {
+    position: absolute;
+    inset: 4px;
+    z-index: -1;
+    border-radius: 10px;
+    background:
+        radial-gradient(circle at 22% 18%, rgba(244, 238, 232, 0.32), transparent 28%),
+        radial-gradient(circle at 80% 22%, rgba(197, 180, 163, 0.34), transparent 30%),
+        linear-gradient(135deg, rgba(197, 180, 163, 0.28), rgba(244, 238, 232, 0.12), rgba(30, 32, 34, 0.05));
+    content: "";
+    filter: blur(26px) saturate(1.2);
+    opacity: 0;
+    transform: scale(0.94);
+    transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.video-tile.is-ambient::before {
+    opacity: 0.82;
+    transform: scale(1.03);
+    animation: ambient-pulse 3.8s ease-in-out infinite;
+}
+
+.video-tile > * {
+    position: relative;
+    z-index: 1;
 }
 
 .video-tile .card-img {
@@ -761,6 +790,24 @@ a {
     font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
     font-size: 0.94rem;
     font-weight: 800;
+}
+
+@keyframes ambient-pulse {
+    0%,
+    100% {
+        filter: blur(24px) saturate(1.08);
+        transform: scale(1.01);
+    }
+    50% {
+        filter: blur(32px) saturate(1.26);
+        transform: scale(1.045);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .video-tile.is-ambient::before {
+        animation: none;
+    }
 }
 
 .image-modal.is-open {

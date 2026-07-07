@@ -434,6 +434,10 @@
         const imageModalPreview = document.querySelector(".image-modal-preview");
         const imageModalTitle = document.querySelector(".image-modal-title");
         const imageModalClose = document.querySelector(".image-modal-close");
+        const setAmbientTile = (tile, isAmbient) => {
+            if (!tile) return;
+            tile.classList.toggle("is-ambient", isAmbient);
+        };
 
         document.querySelectorAll("[data-carousel]").forEach((carousel) => {
             const track = carousel.querySelector(".video-grid");
@@ -460,6 +464,7 @@
                 track.style.transform = `translateX(-${activeIndex * 100}%)`;
                 slides.forEach((slide, slideIndex) => {
                     slide.setAttribute("aria-hidden", slideIndex === activeIndex ? "false" : "true");
+                    if (slideIndex !== activeIndex) setAmbientTile(slide, false);
                 });
                 dots.forEach((dot, dotIndex) => {
                     dot.classList.toggle("is-active", dotIndex === activeIndex);
@@ -470,6 +475,43 @@
             nextButton.addEventListener("click", () => setActiveSlide(activeIndex + 1));
             setActiveSlide(0);
         });
+
+        const loadYouTubeAmbientMode = () => {
+            const youtubeFrames = Array.from(document.querySelectorAll('iframe[src*="youtube.com/embed"]'));
+            if (!youtubeFrames.length) return;
+
+            youtubeFrames.forEach((iframe, index) => {
+                const url = new URL(iframe.src);
+                url.searchParams.set("enablejsapi", "1");
+                iframe.src = url.toString();
+                iframe.id = iframe.id || `youtube-sample-${index + 1}`;
+            });
+
+            window.onYouTubeIframeAPIReady = () => {
+                youtubeFrames.forEach((iframe) => {
+                    new YT.Player(iframe.id, {
+                        events: {
+                            onStateChange: (event) => {
+                                const tile = iframe.closest(".video-tile");
+                                const playing = event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING;
+                                setAmbientTile(tile, playing);
+                            }
+                        }
+                    });
+                });
+            };
+
+            const apiScript = document.createElement("script");
+            apiScript.src = "https://www.youtube.com/iframe_api";
+            document.head.appendChild(apiScript);
+        };
+
+        document.querySelectorAll(".video-tile").forEach((tile) => {
+            tile.addEventListener("pointerdown", () => setAmbientTile(tile, true));
+            tile.addEventListener("focusin", () => setAmbientTile(tile, true));
+        });
+
+        loadYouTubeAmbientMode();
 
         document.querySelectorAll(".image-preview").forEach((preview) => {
             preview.addEventListener("click", () => {
