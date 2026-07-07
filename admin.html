@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Studio Cove | Admin</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&amp;family=Montserrat:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+
+        .admin-shell {
+            display: grid;
+            gap: 28px;
+            padding: clamp(22px, 5vw, 64px);
+        }
+
+        .admin-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 22px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .admin-header h1 {
+            max-width: 780px;
+            color: var(--light);
+            font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+            font-size: clamp(2.2rem, 6vw, 4.8rem);
+            line-height: 0.95;
+        }
+
+        .admin-header p,
+        .admin-note,
+        .field-group p,
+        .admin-status {
+            color: rgba(244, 238, 232, 0.68);
+        }
+
+        .admin-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .admin-button {
+            display: inline-flex;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 15px;
+            color: var(--light);
+            border: 1px solid rgba(197, 180, 163, 0.36);
+            border-radius: 6px;
+            background: rgba(244, 238, 232, 0.075);
+            cursor: pointer;
+            font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+            font-size: 0.74rem;
+            font-weight: 900;
+            letter-spacing: 0.07em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .admin-button:hover {
+            border-color: rgba(197, 180, 163, 0.72);
+        }
+
+        .admin-button-primary {
+            color: var(--ink);
+            background: var(--sage);
+        }
+
+        .admin-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.38fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        .editor-panel,
+        .admin-side {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel);
+        }
+
+        .editor-panel {
+            display: grid;
+            gap: 1px;
+            overflow: hidden;
+            background: var(--line);
+        }
+
+        .field-group {
+            display: grid;
+            gap: 18px;
+            padding: clamp(20px, 3vw, 30px);
+            background: rgba(30, 32, 34, 0.86);
+        }
+
+        .field-group h2 {
+            color: var(--light);
+            font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+            font-size: 1.15rem;
+        }
+
+        .field-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .admin-field {
+            display: grid;
+            gap: 8px;
+        }
+
+        .admin-field label {
+            color: var(--sage);
+            font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .admin-field input,
+        .admin-field textarea {
+            width: 100%;
+            color: var(--light);
+            border: 1px solid rgba(244, 238, 232, 0.16);
+            border-radius: 6px;
+            background: rgba(244, 238, 232, 0.07);
+            font: inherit;
+            outline: 0;
+            padding: 12px 14px;
+        }
+
+        .admin-field textarea {
+            min-height: 116px;
+            resize: vertical;
+        }
+
+        .admin-field input:focus,
+        .admin-field textarea:focus {
+            border-color: rgba(197, 180, 163, 0.72);
+        }
+
+        .admin-side {
+            position: sticky;
+            top: 24px;
+            display: grid;
+            gap: 18px;
+            padding: 22px;
+        }
+
+        .admin-side h2 {
+            color: var(--light);
+            font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+            font-size: 1rem;
+        }
+
+        .admin-note {
+            padding: 14px;
+            border: 1px solid rgba(197, 180, 163, 0.2);
+            border-radius: 6px;
+            background: rgba(244, 238, 232, 0.055);
+            font-size: 0.94rem;
+        }
+
+        .admin-status {
+            min-height: 24px;
+            font-size: 0.92rem;
+        }
+
+        .admin-file-input {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .admin-header,
+            .admin-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+                align-items: start;
+                flex-direction: column;
+            }
+
+            .admin-actions {
+                justify-content: flex-start;
+            }
+
+            .admin-side {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="admin-shell">
+        <header class="admin-header">
+            <div>
+                <p class="eyebrow">The Studio Cove</p>
+                <h1>Admin Content Editor</h1>
+            </div>
+            <div class="admin-actions">
+                <a class="admin-button" href="index.html">View Site</a>
+                <button class="admin-button admin-button-primary" type="button" id="saveContent">Save Draft</button>
+            </div>
+        </header>
+
+        <section class="admin-layout">
+            <form class="editor-panel" id="contentForm">
+                <section class="field-group">
+                    <div>
+                        <h2>Studio Intro</h2>
+                        <p>Edit the first section shown at the top of the site.</p>
+                    </div>
+                    <div class="field-list">
+                        <div class="admin-field">
+                            <label for="studio-kicker">Kicker</label>
+                            <input id="studio-kicker" name="studio.kicker" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label for="studio-title">Title</label>
+                            <textarea id="studio-title" name="studio.title"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label for="studio-description1">Description 1</label>
+                            <textarea id="studio-description1" name="studio.description1"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label for="studio-description2">Description 2</label>
+                            <textarea id="studio-description2" name="studio.description2"></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="field-group">
+                    <div>
+                        <h2>Hero</h2>
+                        <p>Edit the name, role, and short bio area.</p>
+                    </div>
+                    <div class="field-list">
+                        <div class="admin-field">
+                            <label for="hero-kicker">Kicker</label>
+                            <input id="hero-kicker" name="hero.kicker" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label for="hero-name">Name</label>
+                            <input id="hero-name" name="hero.name" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label for="hero-role">Role Line</label>
+                            <input id="hero-role" name="hero.role" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label for="hero-description">Description</label>
+                            <textarea id="hero-description" name="hero.description"></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="field-group">
+                    <div>
+                        <h2>Section Headings</h2>
+                        <p>Edit the major content blocks.</p>
+                    </div>
+                    <div class="field-list">
+                        <div class="admin-field">
+                            <label for="skills-title">Skills Title</label>
+                            <input id="skills-title" name="skills.title" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label for="skills-description">Skills Description</label>
+                            <textarea id="skills-description" name="skills.description"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label for="samples-title">Samples Title</label>
+                            <input id="samples-title" name="samples.title" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label for="samples-description">Samples Description</label>
+                            <textarea id="samples-description" name="samples.description"></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="field-group">
+                    <div>
+                        <h2>Contact</h2>
+                        <p>Edit the footer contact details.</p>
+                    </div>
+                    <div class="field-list">
+                        <div class="admin-field">
+                            <label for="contact-title">Contact Title</label>
+                            <input id="contact-title" name="contact.title" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label for="contact-description">Contact Description</label>
+                            <textarea id="contact-description" name="contact.description"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label for="contact-email">Email</label>
+                            <input id="contact-email" name="contact.email" type="email">
+                        </div>
+                        <div class="admin-field">
+                            <label for="contact-phone">Phone</label>
+                            <input id="contact-phone" name="contact.phone" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label for="contact-location">Location</label>
+                            <input id="contact-location" name="contact.location" type="text">
+                        </div>
+                    </div>
+                </section>
+            </form>
+
+            <aside class="admin-side">
+                <h2>Publish Workflow</h2>
+                <p class="admin-note">This admin is local-only. Save Draft updates this browser immediately. Export JSON when you want to copy the same changes into <strong>data/site-content.json</strong> before publishing.</p>
+                <div class="admin-actions">
+                    <button class="admin-button" type="button" id="exportContent">Export JSON</button>
+                    <button class="admin-button" type="button" id="importContent">Import JSON</button>
+                    <button class="admin-button" type="button" id="resetContent">Reset Draft</button>
+                </div>
+                <input class="admin-file-input" id="contentFile" type="file" accept="application/json">
+                <p class="admin-status" id="adminStatus" role="status"></p>
+            </aside>
+        </section>
+    </main>
+
+    <script>
+        const CONTENT_STORAGE_KEY = "studio-cove-content";
+        const allowedAdminHosts = ["", "localhost", "127.0.0.1", "::1"];
+        const isLocalAdmin = location.protocol === "file:" || allowedAdminHosts.includes(location.hostname);
+
+        if (!isLocalAdmin) {
+            document.body.innerHTML = `
+                <main class="admin-shell">
+                    <section class="admin-header">
+                        <div>
+                            <p class="eyebrow">Local Admin Only</p>
+                            <h1>This editor only runs on your computer.</h1>
+                            <p>Open the portfolio folder locally and run a local server to edit drafts.</p>
+                        </div>
+                        <a class="admin-button" href="index.html">Back to Site</a>
+                    </section>
+                </main>
+            `;
+            throw new Error("Admin editor is local-only.");
+        }
+
+        const form = document.querySelector("#contentForm");
+        const statusText = document.querySelector("#adminStatus");
+        const contentFile = document.querySelector("#contentFile");
+
+        const setStatus = (message) => {
+            statusText.textContent = message;
+        };
+
+        const collectFormContent = () => {
+            const content = {};
+            new FormData(form).forEach((value, key) => {
+                content[key] = value;
+            });
+            return content;
+        };
+
+        const fillForm = (content) => {
+            form.querySelectorAll("[name]").forEach((field) => {
+                field.value = content[field.name] || "";
+            });
+        };
+
+        const loadContent = async () => {
+            const response = await fetch("data/site-content.json", { cache: "no-store" });
+            const content = response.ok ? await response.json() : {};
+            const savedContent = JSON.parse(localStorage.getItem(CONTENT_STORAGE_KEY) || "{}");
+            fillForm({ ...content, ...savedContent });
+        };
+
+        document.querySelector("#saveContent").addEventListener("click", () => {
+            localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(collectFormContent()));
+            setStatus("Draft saved in this browser. Open the site to preview it.");
+        });
+
+        document.querySelector("#exportContent").addEventListener("click", () => {
+            const blob = new Blob([JSON.stringify(collectFormContent(), null, 2)], { type: "application/json" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "site-content.json";
+            link.click();
+            URL.revokeObjectURL(link.href);
+            setStatus("JSON exported.");
+        });
+
+        document.querySelector("#importContent").addEventListener("click", () => {
+            contentFile.click();
+        });
+
+        contentFile.addEventListener("change", async () => {
+            const [file] = contentFile.files;
+            if (!file) return;
+
+            try {
+                const content = JSON.parse(await file.text());
+                fillForm(content);
+                localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(content));
+                setStatus("JSON imported and saved as draft.");
+            } catch (error) {
+                setStatus("That file could not be imported.");
+            }
+        });
+
+        document.querySelector("#resetContent").addEventListener("click", async () => {
+            localStorage.removeItem(CONTENT_STORAGE_KEY);
+            await loadContent();
+            setStatus("Draft reset to the published content file.");
+        });
+
+        loadContent().catch(() => {
+            setStatus("Content file could not be loaded.");
+        });
+    </script>
+</body>
+</html>

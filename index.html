@@ -27,21 +27,21 @@
     <main id="top">
         <section class="studio-intro" id="about">
             <div>
-                <p class="eyebrow">The Studio Cove</p>
-                <h1>A personal studio brand built by John Jacob Tamon.</h1>
+                <p class="eyebrow" data-content="studio.kicker">The Studio Cove</p>
+                <h1 data-content="studio.title">A personal studio brand built by John Jacob Tamon.</h1>
             </div>
             <div class="definition-card">
-                <p><strong>The Studio Cove</strong> is my creative workspace for multimedia production. A cove is a sheltered place where rough waters calm down, so the name represents how I bring raw ideas into a focused space and shape them into clean, polished digital work.</p>
-                <p>It also reflects my personal identity. The word "Cove" is inspired by the inner sound of Jacob, making the brand feel professional while still staying connected to me.</p>
+                <p data-content="studio.description1"><strong>The Studio Cove</strong> is my creative workspace for multimedia production. A cove is a sheltered place where rough waters calm down, so the name represents how I bring raw ideas into a focused space and shape them into clean, polished digital work.</p>
+                <p data-content="studio.description2">It also reflects my personal identity. The word "Cove" is inspired by the inner sound of Jacob, making the brand feel professional while still staying connected to me.</p>
             </div>
         </section>
 
         <header class="hero">
             <div class="hero-copy">
-                <p class="eyebrow">Concept to cut.</p>
-                <h2>John Jacob Tamon</h2>
-                <p class="role-line">Graphics Designer | Video Editor | Social Media Manager | IT Student</p>
-                <p class="hero-text">I create multimedia assets, manage social content, edit videos, and support digital production workflows through The Studio Cove.</p>
+                <p class="eyebrow" data-content="hero.kicker">Concept to cut.</p>
+                <h2 data-content="hero.name">John Jacob Tamon</h2>
+                <p class="role-line" data-content="hero.role">Graphics Designer | Video Editor | Social Media Manager | IT Student</p>
+                <p class="hero-text" data-content="hero.description">I create multimedia assets, manage social content, edit videos, and support digital production workflows through The Studio Cove.</p>
                 <div class="hero-actions">
                     <a class="btn btn-primary" href="#samples">View Sample Works</a>
                     <a class="btn btn-secondary" href="#contact">Get in Touch</a>
@@ -62,9 +62,9 @@
 
         <section class="section section-panel" id="skills">
             <div class="section-heading">
-                <p class="section-kicker">Section 2</p>
-                <h2>My Skills and Experience</h2>
-                <p>Detail-oriented IT student with over 3 years of experience handling digital media, social accounts, technical workflows, and multimedia editing for campus, church, and client-facing projects.</p>
+                <p class="section-kicker" data-content="skills.kicker">Section 2</p>
+                <h2 data-content="skills.title">My Skills and Experience</h2>
+                <p data-content="skills.description">Detail-oriented IT student with over 3 years of experience handling digital media, social accounts, technical workflows, and multimedia editing for campus, church, and client-facing projects.</p>
             </div>
 
             <div class="experience-grid">
@@ -154,9 +154,9 @@
 
         <section class="section samples-section" id="samples">
             <div class="section-heading">
-                <p class="section-kicker">Portfolio Samples</p>
-                <h2>Sample Works</h2>
-                <p>A cleaner look at selected video edits, graphics work, and production support samples from The Studio Cove.</p>
+                <p class="section-kicker" data-content="samples.kicker">Portfolio Samples</p>
+                <h2 data-content="samples.title">Sample Works</h2>
+                <p data-content="samples.description">A cleaner look at selected video edits, graphics work, and production support samples from The Studio Cove.</p>
             </div>
 
             <div class="sample-overview" aria-label="Sample categories">
@@ -360,13 +360,13 @@
                 <span></span>
                 <span></span>
             </div>
-            <p class="section-kicker">Section 7</p>
-            <h2>Get in Touch</h2>
-            <p>For multimedia production, graphics, video editing, social media support, or technical digital assistance, reach me through the details below.</p>
+            <p class="section-kicker" data-content="contact.kicker">Section 7</p>
+            <h2 data-content="contact.title">Get in Touch</h2>
+            <p data-content="contact.description">For multimedia production, graphics, video editing, social media support, or technical digital assistance, reach me through the details below.</p>
             <div class="contact-grid">
-                <a href="mailto:tamonjohnjacob@gmail.com">tamonjohnjacob@gmail.com</a>
-                <a href="tel:+639561665575">(+63) 956 166 5575</a>
-                <span>Brgy. Isio, Cauayan, Negros Occidental</span>
+                <a href="mailto:tamonjohnjacob@gmail.com" data-content="contact.email" data-content-href="mailto:">tamonjohnjacob@gmail.com</a>
+                <a href="tel:+639561665575" data-content="contact.phone" data-content-href="tel:">(+63) 956 166 5575</a>
+                <span data-content="contact.location">Brgy. Isio, Cauayan, Negros Occidental</span>
             </div>
         </section>
     </main>
@@ -388,6 +388,42 @@
     </div>
 
     <script>
+        const CONTENT_STORAGE_KEY = "studio-cove-content";
+
+        const updateContentElement = (element, value) => {
+            if (value === undefined || value === null) return;
+            element.textContent = value;
+
+            const hrefPrefix = element.dataset.contentHref;
+            if (!hrefPrefix) return;
+
+            if (hrefPrefix === "mailto:") {
+                element.href = `mailto:${value}`;
+            } else if (hrefPrefix === "tel:") {
+                element.href = `tel:${value.replace(/[^\d+]/g, "")}`;
+            }
+        };
+
+        const applySiteContent = (content) => {
+            document.querySelectorAll("[data-content]").forEach((element) => {
+                updateContentElement(element, content[element.dataset.content]);
+            });
+        };
+
+        const loadSiteContent = async () => {
+            try {
+                const response = await fetch("data/site-content.json", { cache: "no-store" });
+                const content = response.ok ? await response.json() : {};
+                const savedContent = JSON.parse(localStorage.getItem(CONTENT_STORAGE_KEY) || "{}");
+                applySiteContent({ ...content, ...savedContent });
+            } catch (error) {
+                const savedContent = JSON.parse(localStorage.getItem(CONTENT_STORAGE_KEY) || "{}");
+                applySiteContent(savedContent);
+            }
+        };
+
+        loadSiteContent();
+
         const videoModal = document.querySelector(".video-modal");
         const videoModalPlayer = document.querySelector(".video-modal-player");
         const videoModalTitle = document.querySelector(".video-modal-title");
