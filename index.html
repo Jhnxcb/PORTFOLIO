@@ -874,20 +874,46 @@
         window.addEventListener("scroll", setActiveNavigation, { passive: true });
 
         const revealTargets = document.querySelectorAll(".section-heading, .skill-card, .timeline-item, .tool-cloud, .sample-jump-card, .sample-block, .pubmat-category, .portfolio-card, .contact-section, .site-footer");
+        const staggerGroups = [".skill-card", ".timeline-item", ".sample-jump-card", ".portfolio-card", ".pubmat-category"];
+
+        staggerGroups.forEach((selector) => {
+            document.querySelectorAll(selector).forEach((target, index) => {
+                target.style.setProperty("--reveal-delay", `${Math.min(index % 8, 7) * 70}ms`);
+            });
+        });
+
+        const revealElement = (target) => {
+            target.classList.add("is-visible");
+        };
+
+        const revealVisibleTargets = () => {
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            revealTargets.forEach((target) => {
+                if (target.classList.contains("is-visible")) return;
+                const rect = target.getBoundingClientRect();
+                if (rect.top <= viewportHeight * 0.88 && rect.bottom >= 0) {
+                    revealElement(target);
+                }
+            });
+        };
 
         if ("IntersectionObserver" in window) {
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (!entry.isIntersecting) return;
-                    entry.target.classList.add("is-visible");
+                    revealElement(entry.target);
                     revealObserver.unobserve(entry.target);
                 });
-            }, { threshold: 0.12 });
+            }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
 
             revealTargets.forEach((target) => {
                 target.classList.add("reveal-on-scroll");
                 revealObserver.observe(target);
             });
+
+            revealVisibleTargets();
+            window.addEventListener("scroll", revealVisibleTargets, { passive: true });
+            window.addEventListener("resize", revealVisibleTargets);
         } else {
             revealTargets.forEach((target) => target.classList.add("is-visible"));
         }
