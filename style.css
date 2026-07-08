@@ -733,6 +733,8 @@ a {
     grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 14px;
     align-items: center;
+    width: min(100%, 1180px);
+    margin-inline: auto;
     isolation: isolate;
 }
 
@@ -791,8 +793,8 @@ a {
     position: relative;
     display: grid;
     flex: 0 0 100%;
-    gap: 12px;
-    padding: 12px;
+    gap: 10px;
+    padding: 10px;
     background: rgba(244, 238, 232, 0.055);
     isolation: isolate;
 }
@@ -835,7 +837,7 @@ a {
 .video-player {
     display: grid;
     place-items: center;
-    min-height: clamp(280px, 52vw, 560px);
+    min-height: clamp(240px, 44vw, 500px);
     overflow: hidden;
     border: 1px solid rgba(197, 180, 163, 0.28);
     border-radius: 8px;
@@ -857,13 +859,13 @@ a {
 }
 
 .video-player:not(.video-player-portrait) iframe {
-    max-height: min(56vw, 560px);
+    max-height: min(48vw, 500px);
 }
 
 .carousel-control {
     display: inline-flex;
-    width: 58px;
-    min-height: 58px;
+    width: 52px;
+    min-height: 52px;
     align-items: center;
     justify-content: center;
     color: var(--light);
@@ -906,11 +908,11 @@ a {
 }
 
 .video-tile h4 {
-    margin-top: 10px;
-    min-height: 34px;
+    margin-top: 6px;
+    min-height: 30px;
     color: var(--light);
     font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
-    font-size: clamp(1.12rem, 2vw, 1.45rem);
+    font-size: clamp(1rem, 1.65vw, 1.28rem);
     font-weight: 900;
     line-height: 1.18;
     text-align: center;
@@ -1307,6 +1309,7 @@ a {
     .video-carousel {
         grid-template-columns: 1fr 1fr;
         gap: 10px;
+        width: 100%;
     }
 
     .video-carousel-window {
