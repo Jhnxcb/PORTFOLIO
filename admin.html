@@ -275,8 +275,8 @@
 
                 <section class="field-group">
                     <div>
-                        <h2>Section Headings</h2>
-                        <p>Edit the major content blocks.</p>
+                        <h2>Page Text</h2>
+                        <p>Edit the main portfolio copy.</p>
                     </div>
                     <div class="field-list">
                         <div class="admin-field">
@@ -385,10 +385,35 @@
             });
         };
 
+        const removeStaleSavedContent = (savedContent) => {
+            const staleValues = {
+                "skills.kicker": "Section 2",
+                "skills.title": "My Skills and Experience",
+                "samples.kicker": "Portfolio Samples",
+                "samples.title": "Sample Works",
+                "contact.kicker": "Section 7",
+                "contact.title": "Get in Touch"
+            };
+
+            let changed = false;
+            Object.entries(staleValues).forEach(([key, value]) => {
+                if (savedContent[key] === value) {
+                    delete savedContent[key];
+                    changed = true;
+                }
+            });
+
+            if (changed) {
+                localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(savedContent));
+            }
+
+            return savedContent;
+        };
+
         const loadContent = async () => {
             const response = await fetch("data/site-content.json", { cache: "no-store" });
             const content = response.ok ? await response.json() : {};
-            const savedContent = JSON.parse(localStorage.getItem(CONTENT_STORAGE_KEY) || "{}");
+            const savedContent = removeStaleSavedContent(JSON.parse(localStorage.getItem(CONTENT_STORAGE_KEY) || "{}"));
             fillForm({ ...content, ...savedContent });
         };
 
