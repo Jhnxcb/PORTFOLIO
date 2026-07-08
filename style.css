@@ -845,6 +845,7 @@ a {
 }
 
 .pubmat-card img {
+    box-sizing: border-box;
     display: block;
     width: 100%;
     height: 100%;
@@ -1131,15 +1132,17 @@ a {
 
 .image-modal-content {
     display: grid;
-    gap: 16px;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 14px;
     width: min(100%, 1120px);
+    max-height: calc(100vh - clamp(36px, 8vw, 96px));
 }
 
 .image-modal-title {
     color: var(--light);
     font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
-    font-size: clamp(1.6rem, 4vw, 3.4rem);
-    line-height: 0.95;
+    font-size: clamp(1.35rem, 3vw, 2.65rem);
+    line-height: 1;
 }
 
 .image-modal {
@@ -1149,6 +1152,7 @@ a {
     display: none;
     place-items: center;
     padding: clamp(18px, 4vw, 48px);
+    overflow: hidden;
     background: rgba(30, 32, 34, 0.94);
     backdrop-filter: blur(16px);
 }
@@ -1160,7 +1164,8 @@ a {
 .image-modal-preview {
     display: grid;
     place-items: center;
-    min-height: min(72vh, 720px);
+    min-height: 0;
+    height: min(68vh, 660px);
     overflow: hidden;
     border: 1px solid rgba(197, 180, 163, 0.35);
     border-radius: 8px;
@@ -1170,7 +1175,8 @@ a {
 
 .image-modal-preview .card-img {
     width: 100%;
-    min-height: min(72vh, 720px);
+    min-height: 0;
+    height: 100%;
     border: 0;
     border-radius: 0;
     cursor: default;
@@ -1181,8 +1187,13 @@ a {
 }
 
 .image-modal-preview .pubmat-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    height: min(72vh, 720px);
+    height: 100%;
+    padding: 12px;
+    overflow: hidden;
     border: 0;
     border-radius: 0;
     box-shadow: none;
@@ -1198,7 +1209,11 @@ a {
 }
 
 .image-modal-preview .pubmat-card img {
-    padding: 12px;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    padding: 0;
     object-fit: contain;
     transform: none;
 }
@@ -1541,6 +1556,19 @@ a {
 
     .carousel-dots {
         grid-column: 1 / -1;
+    }
+
+    .image-modal {
+        align-items: start;
+        padding-top: 72px;
+    }
+
+    .image-modal-title {
+        font-size: clamp(1.25rem, 8vw, 2.1rem);
+    }
+
+    .image-modal-preview {
+        height: min(66vh, 560px);
     }
 
     .sample-jump-card {
