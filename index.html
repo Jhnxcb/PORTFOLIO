@@ -503,6 +503,9 @@
         const setAmbientTile = (tile, isAmbient) => {
             if (!tile) return;
             tile.classList.toggle("is-ambient", isAmbient);
+            const carousel = tile.closest(".video-carousel");
+            if (!carousel) return;
+            carousel.classList.toggle("is-ambient", !!carousel.querySelector(".video-tile.is-ambient"));
         };
 
         document.querySelectorAll("[data-carousel]").forEach((carousel) => {

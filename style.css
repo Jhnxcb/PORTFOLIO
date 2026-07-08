@@ -651,13 +651,53 @@ a {
     grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 14px;
     align-items: center;
+    isolation: isolate;
+}
+
+.video-carousel::before {
+    position: absolute;
+    inset: -36px clamp(10px, 4vw, 76px) 24px;
+    z-index: -1;
+    border-radius: 34px;
+    background:
+        radial-gradient(circle at 18% 26%, rgba(244, 238, 232, 0.28), transparent 34%),
+        radial-gradient(circle at 84% 20%, rgba(197, 180, 163, 0.42), transparent 32%),
+        radial-gradient(circle at 50% 92%, rgba(217, 206, 195, 0.22), transparent 36%);
+    content: "";
+    filter: blur(34px) saturate(1.28);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 320ms ease, transform 320ms ease;
+    pointer-events: none;
+}
+
+.video-carousel:is(.is-ambient, :hover, :focus-within)::before {
+    opacity: 0.9;
+    transform: scale(1.03);
+    animation: ambient-background 5s ease-in-out infinite;
 }
 
 .video-carousel-window {
+    position: relative;
     overflow: hidden;
     border: 1px solid rgba(244, 238, 232, 0.12);
     border-radius: 8px;
-    background: rgba(244, 238, 232, 0.045);
+    background:
+        radial-gradient(circle at 50% 30%, rgba(244, 238, 232, 0.045), transparent 45%),
+        rgba(244, 238, 232, 0.045);
+    box-shadow: 0 0 0 rgba(197, 180, 163, 0);
+    transition: border-color 260ms ease, box-shadow 260ms ease, background 260ms ease;
+}
+
+.video-carousel:is(.is-ambient, :hover, :focus-within) .video-carousel-window {
+    border-color: rgba(197, 180, 163, 0.5);
+    background:
+        radial-gradient(circle at 24% 18%, rgba(244, 238, 232, 0.13), transparent 34%),
+        radial-gradient(circle at 80% 12%, rgba(197, 180, 163, 0.16), transparent 38%),
+        rgba(244, 238, 232, 0.07);
+    box-shadow:
+        0 0 54px rgba(197, 180, 163, 0.24),
+        0 26px 80px rgba(0, 0, 0, 0.36);
 }
 
 .video-grid {
@@ -806,8 +846,21 @@ a {
     }
 }
 
+@keyframes ambient-background {
+    0%,
+    100% {
+        filter: blur(32px) saturate(1.18);
+        opacity: 0.78;
+    }
+    50% {
+        filter: blur(42px) saturate(1.38);
+        opacity: 0.95;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .video-tile.is-ambient::before {
+    .video-tile.is-ambient::before,
+    .video-carousel:is(.is-ambient, :hover, :focus-within)::before {
         animation: none;
     }
 }
