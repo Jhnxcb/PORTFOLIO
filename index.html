@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas class="particle-canvas" aria-hidden="true"></canvas>
     <a class="skip-link" href="#top">Skip to content</a>
     <nav class="navbar" aria-label="Main navigation">
         <a class="brand" href="#top" aria-label="The Studio Cove home">
@@ -685,6 +686,118 @@
         const navLinks = document.querySelectorAll(".nav-links a");
         const sections = Array.from(document.querySelectorAll("#about, #skills, #samples, #contact"));
         let lastFocusedElement = null;
+
+        const initParticles = () => {
+            const canvas = document.querySelector(".particle-canvas");
+            const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+            if (!canvas || reduceMotion.matches) return;
+
+            const context = canvas.getContext("2d");
+            const particles = [];
+            let animationFrame;
+            let width = 0;
+            let height = 0;
+            let pixelRatio = 1;
+
+            const particleCount = () => Math.min(84, Math.max(34, Math.floor(window.innerWidth / 18)));
+
+            const createParticle = () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.8 + 0.6,
+                vx: (Math.random() - 0.5) * 0.22,
+                vy: (Math.random() - 0.5) * 0.22,
+                alpha: Math.random() * 0.34 + 0.18
+            });
+
+            const resizeCanvas = () => {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+                canvas.width = Math.floor(width * pixelRatio);
+                canvas.height = Math.floor(height * pixelRatio);
+                canvas.style.width = `${width}px`;
+                canvas.style.height = `${height}px`;
+                context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+                const targetCount = particleCount();
+                while (particles.length < targetCount) particles.push(createParticle());
+                particles.length = targetCount;
+            };
+
+            const drawParticles = () => {
+                context.clearRect(0, 0, width, height);
+
+                particles.forEach((particle, index) => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+
+                    if (particle.x < -20) particle.x = width + 20;
+                    if (particle.x > width + 20) particle.x = -20;
+                    if (particle.y < -20) particle.y = height + 20;
+                    if (particle.y > height + 20) particle.y = -20;
+
+                    context.beginPath();
+                    context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    context.fillStyle = `rgba(244, 238, 232, ${particle.alpha})`;
+                    context.fill();
+
+                    for (let nextIndex = index + 1; nextIndex < particles.length; nextIndex += 1) {
+                        const next = particles[nextIndex];
+                        const distance = Math.hypot(particle.x - next.x, particle.y - next.y);
+                        if (distance > 118) continue;
+
+                        context.beginPath();
+                        context.moveTo(particle.x, particle.y);
+                        context.lineTo(next.x, next.y);
+                        context.strokeStyle = `rgba(197, 180, 163, ${0.11 * (1 - distance / 118)})`;
+                        context.lineWidth = 1;
+                        context.stroke();
+                    }
+                });
+
+                animationFrame = window.requestAnimationFrame(drawParticles);
+            };
+
+            const startParticles = () => {
+                if (animationFrame) return;
+                animationFrame = window.requestAnimationFrame(drawParticles);
+            };
+
+            const stopParticles = () => {
+                window.cancelAnimationFrame(animationFrame);
+                animationFrame = undefined;
+            };
+
+            resizeCanvas();
+            startParticles();
+            window.addEventListener("resize", resizeCanvas);
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    stopParticles();
+                } else {
+                    startParticles();
+                }
+            });
+
+            const handleMotionPreferenceChange = (event) => {
+                if (event.matches) {
+                    stopParticles();
+                    context.clearRect(0, 0, width, height);
+                } else {
+                    resizeCanvas();
+                    startParticles();
+                }
+            };
+
+            if (reduceMotion.addEventListener) {
+                reduceMotion.addEventListener("change", handleMotionPreferenceChange);
+            } else {
+                reduceMotion.addListener(handleMotionPreferenceChange);
+            }
+        };
+
+        initParticles();
 
         navToggle.addEventListener("click", () => {
             const isOpen = navbar.classList.toggle("is-open");

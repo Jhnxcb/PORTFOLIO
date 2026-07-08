@@ -29,6 +29,7 @@ html {
 }
 
 body {
+    position: relative;
     min-height: 100vh;
     color: var(--light);
     background:
@@ -41,6 +42,31 @@ body {
 
 body.modal-open {
     overflow: hidden;
+}
+
+.particle-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.48;
+    pointer-events: none;
+}
+
+.skip-link,
+.navbar,
+main,
+.site-footer,
+.image-modal {
+    position: relative;
+}
+
+.skip-link,
+.navbar,
+main,
+.site-footer {
+    z-index: 1;
 }
 
 a {
