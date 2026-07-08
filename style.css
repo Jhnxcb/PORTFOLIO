@@ -943,12 +943,12 @@ a:focus-visible,
 
 .pubmat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
 }
 
 .pubmat-grid-compact {
-    grid-template-columns: minmax(150px, 260px);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .pubmat-card {
@@ -1652,6 +1652,14 @@ a:focus-visible,
     .timeline-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .pubmat-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .pubmat-grid-compact {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
 }
 
 @keyframes hero-glow {
@@ -1697,6 +1705,11 @@ a:focus-visible,
 
     .photo-stage {
         min-height: auto;
+    }
+
+    .pubmat-grid,
+    .pubmat-grid-compact {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
 }
@@ -1771,6 +1784,11 @@ a:focus-visible,
     .media-only .image-preview,
     .portfolio-card .image-preview {
         min-height: 0;
+    }
+
+    .pubmat-grid,
+    .pubmat-grid-compact {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .video-carousel {
