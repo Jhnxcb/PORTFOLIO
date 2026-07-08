@@ -116,7 +116,7 @@ a {
 .hero h2,
 .section-heading h2,
 .contact-section h2,
-.experience-card h3,
+.skill-card h3,
 .timeline-item h3,
 .portfolio-card h4,
 .block-heading h3 {
@@ -365,14 +365,14 @@ a {
     font-size: clamp(2.1rem, 5vw, 4.4rem);
 }
 
-.experience-grid,
+.skills-grid,
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
 }
 
-.experience-card,
+.skill-card,
 .portfolio-card,
 .timeline-item {
     border: 1px solid var(--line);
@@ -380,12 +380,58 @@ a {
     background: var(--panel);
 }
 
-.experience-card {
-    min-height: 238px;
-    padding: 24px;
+.skills-experience-layout {
+    display: grid;
+    gap: 34px;
 }
 
-.experience-card h3,
+.skills-block,
+.experience-block {
+    display: grid;
+    gap: 18px;
+}
+
+.subsection-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(244, 238, 232, 0.12);
+}
+
+.subsection-heading span {
+    color: var(--sage);
+    font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+    font-size: 0.74rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.subsection-heading h3 {
+    color: var(--light);
+    font-family: "Montserrat", "DM Sans", "Segoe UI", Arial, sans-serif;
+    font-size: clamp(1.35rem, 2.6vw, 2.2rem);
+    line-height: 1;
+}
+
+.subsection-heading-strong {
+    margin-top: 10px;
+    border-bottom-color: rgba(197, 180, 163, 0.36);
+}
+
+.subsection-heading-strong h3 {
+    font-size: clamp(1.8rem, 4vw, 3.4rem);
+}
+
+.skill-card {
+    min-height: 210px;
+    padding: 22px;
+    background: rgba(244, 238, 232, 0.05);
+}
+
+.skill-card h3,
 .timeline-item h3,
 .portfolio-card h4 {
     margin-top: 14px;
@@ -393,7 +439,7 @@ a {
     font-size: 1.16rem;
 }
 
-.experience-card p,
+.skill-card p,
 .timeline-item p,
 .portfolio-card p {
     margin-top: 10px;
@@ -402,20 +448,40 @@ a {
 
 .timeline-list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1px;
-    margin-top: 28px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 0;
     overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--line);
 }
 
 .timeline-item {
-    border: 0;
-    border-radius: 0;
-    padding: 22px;
-    background: rgba(30, 32, 34, 0.78);
+    position: relative;
+    min-height: 210px;
+    padding: clamp(24px, 3vw, 34px);
+    overflow: hidden;
+    border: 1px solid rgba(197, 180, 163, 0.26);
+    background:
+        linear-gradient(145deg, rgba(244, 238, 232, 0.1), rgba(30, 32, 34, 0.58)),
+        rgba(30, 32, 34, 0.82);
+}
+
+.timeline-item::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--sage);
+    content: "";
+}
+
+.timeline-item::after {
+    position: absolute;
+    right: -54px;
+    bottom: -74px;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(197, 180, 163, 0.2);
+    border-radius: 50%;
+    content: "";
 }
 
 .timeline-item span {
@@ -424,6 +490,17 @@ a {
     font-weight: 900;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+}
+
+.timeline-item h3 {
+    max-width: 520px;
+    font-size: clamp(1.28rem, 2.4vw, 1.9rem);
+    line-height: 1.08;
+}
+
+.timeline-item p {
+    max-width: 520px;
+    font-size: 1.02rem;
 }
 
 .tools-section {
@@ -1120,7 +1197,7 @@ a {
 }
 
 @media (max-width: 1060px) {
-    .experience-grid,
+    .skills-grid,
     .timeline-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1275,7 +1352,7 @@ a {
         text-align: left;
     }
 
-    .experience-grid,
+    .skills-grid,
     .timeline-list {
         grid-template-columns: 1fr;
     }
