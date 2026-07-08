@@ -761,6 +761,14 @@ a {
     animation-delay: 360ms;
 }
 
+.pubmat-category:nth-child(6) {
+    animation-delay: 450ms;
+}
+
+.pubmat-category:nth-child(7) {
+    animation-delay: 540ms;
+}
+
 .pubmat-category-heading {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
