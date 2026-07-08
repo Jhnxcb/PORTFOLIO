@@ -24,13 +24,17 @@
 }
 
 html {
+    max-width: 100%;
+    overflow-x: hidden;
     scroll-padding-top: 96px;
     scroll-behavior: smooth;
 }
 
 body {
     position: relative;
+    max-width: 100%;
     min-height: 100vh;
+    overflow-x: hidden;
     color: var(--light);
     background:
         radial-gradient(circle at 16% 8%, rgba(197, 180, 163, 0.18), transparent 28rem),
@@ -673,8 +677,9 @@ a:focus-visible,
 
 .tool-cloud {
     position: relative;
+    max-width: 100%;
     contain: layout paint;
-    overflow: clip;
+    overflow: hidden;
     padding-block: 12px;
 }
 
@@ -1568,11 +1573,12 @@ a:focus-visible,
     margin-top: 12px;
 }
 
-.contact-grid a,
-.contact-grid span {
+.contact-grid > a,
+.contact-grid > span {
     display: flex;
     min-height: 58px;
     align-items: center;
+    gap: 12px;
     padding: 14px;
     color: var(--light);
     border: 1px solid rgba(244, 238, 232, 0.13);
@@ -1583,8 +1589,41 @@ a:focus-visible,
     text-decoration: none;
 }
 
-.contact-grid a:hover {
+.contact-icon {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(197, 180, 163, 0.34);
+    border-radius: 999px;
+    background: rgba(197, 180, 163, 0.12);
+}
+
+.contact-icon svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--sage);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.contact-label {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.contact-grid > a:hover {
     border-color: rgba(197, 180, 163, 0.7);
+}
+
+.contact-grid > a:hover .contact-icon {
+    border-color: rgba(197, 180, 163, 0.74);
+    background: rgba(197, 180, 163, 0.18);
 }
 
 .site-footer {
