@@ -16,7 +16,7 @@
     <a class="skip-link" href="#top">Skip to content</a>
     <nav class="navbar" aria-label="Main navigation">
         <a class="brand" href="#top" aria-label="The Studio Cove home">
-            <img class="brand-logo" src="studio-cove-logo.png" alt="The Studio Cove logo">
+            <img class="brand-logo" src="PUBMATS%20SAMPLE/logos/SHS%20SAO%20LOGO%20FINAL%20(6).png" alt="The Studio Cove logo">
         </a>
 
         <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
@@ -64,7 +64,7 @@
                         <img src="profile.jpg" alt="Portrait of John Jacob Tamon">
                     </div>
                     <div class="photo-caption">
-                        <img class="caption-logo" src="studio-cove-logo.png" alt="The Studio Cove logo">
+                        <img class="caption-logo" src="PUBMATS%20SAMPLE/logos/SHS%20SAO%20LOGO%20FINAL%20(6).png" alt="The Studio Cove logo">
                     </div>
                 </div>
             </div>
@@ -629,14 +629,20 @@
             <div class="contact-grid">
                 <a href="mailto:tamonjohnjacob@gmail.com" data-content="contact.email" data-content-href="mailto:">tamonjohnjacob@gmail.com</a>
                 <a href="tel:+639561665575" data-content="contact.phone" data-content-href="tel:">(+63) 956 166 5575</a>
-                <span data-content="contact.location">Brgy. Isio, Cauayan, Negros Occidental</span>
+                <span data-content="contact.location">Cauayan, Negros Occidental, Philippines</span>
+                <!-- TODO: Replace # with the final LinkedIn profile URL. -->
+                <a href="#" aria-disabled="true">LinkedIn</a>
+                <!-- TODO: Replace # with the final Instagram profile URL. -->
+                <a href="#" aria-disabled="true">Instagram</a>
+                <!-- TODO: Upload the final resume DOCX/PDF and update this href if the filename changes. -->
+                <a href="resume.docx" download>Download Resume</a>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
         <a class="footer-brand" href="#top" aria-label="The Studio Cove home">
-            <img src="studio-cove-logo.png" alt="The Studio Cove logo">
+            <img src="PUBMATS%20SAMPLE/logos/SHS%20SAO%20LOGO%20FINAL%20(6).png" alt="The Studio Cove logo">
         </a>
         <p>The Studio Cove portfolio of John Jacob Tamon.</p>
         <div class="footer-links" aria-label="Footer navigation">
@@ -685,7 +691,8 @@
                 "samples.kicker": "Portfolio Samples",
                 "samples.title": "Sample Works",
                 "contact.kicker": "Section 7",
-                "contact.title": "Get in Touch"
+                "contact.title": "Get in Touch",
+                "contact.location": "Brgy. Isio, Cauayan, Negros Occidental"
             };
 
             let changed = false;
@@ -735,6 +742,10 @@
                 navToggle.setAttribute("aria-expanded", "false");
                 navToggle.setAttribute("aria-label", "Open navigation menu");
             });
+        });
+
+        document.querySelectorAll('a[aria-disabled="true"]').forEach((link) => {
+            link.addEventListener("click", (event) => event.preventDefault());
         });
 
         const setActiveNavigation = () => {
