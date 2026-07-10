@@ -709,7 +709,7 @@ a:focus-visible,
     width: max-content;
     align-items: center;
     gap: clamp(42px, 7vw, 104px);
-    animation: tools-scroll 30s linear infinite;
+    animation: tools-scroll 42s linear infinite;
 }
 
 .tool-logo {
@@ -1966,7 +1966,7 @@ a:focus-visible,
 
     .tool-track {
         gap: 42px;
-        animation-duration: 24s;
+        animation-duration: 34s;
     }
 
     .tool-logo {
