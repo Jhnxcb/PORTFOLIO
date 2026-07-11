@@ -691,6 +691,19 @@
             const label = element.querySelector(".contact-label");
             if (label) {
                 label.textContent = value;
+            } else if (element.dataset.content === "studio.description1") {
+                const brandName = "The Studio Cove";
+                const brandIndex = value.indexOf(brandName);
+                element.replaceChildren();
+
+                if (brandIndex === -1) {
+                    element.textContent = value;
+                } else {
+                    element.append(document.createTextNode(value.slice(0, brandIndex)));
+                    const strong = document.createElement("strong");
+                    strong.textContent = brandName;
+                    element.append(strong, document.createTextNode(value.slice(brandIndex + brandName.length)));
+                }
             } else {
                 element.textContent = value;
             }
