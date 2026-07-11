@@ -708,41 +708,45 @@ a:focus-visible,
     display: flex;
     width: max-content;
     align-items: center;
-    gap: clamp(42px, 7vw, 104px);
+    gap: clamp(24px, 4vw, 64px);
     animation: tools-scroll 42s linear infinite;
 }
 
 .tool-logo {
     display: flex;
-    min-width: 116px;
+    flex: 0 0 clamp(132px, 12vw, 184px);
+    min-width: 0;
     align-items: center;
     justify-content: center;
 }
 
 .tool-logo img {
-    width: 96px;
+    width: auto;
+    max-width: min(100%, 178px);
     height: 96px;
     object-fit: contain;
     filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.22));
 }
 
 .tool-logo-long {
-    min-width: 260px;
+    flex-basis: clamp(132px, 12vw, 184px);
 }
 
 .tool-logo-long img {
-    width: 252px;
+    width: auto;
+    max-width: min(100%, 178px);
     height: 98px;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
 }
 
 .tool-logo-wide {
-    min-width: 280px;
+    flex-basis: clamp(132px, 12vw, 184px);
 }
 
 .tool-logo-wide img {
-    width: 274px;
+    width: auto;
+    max-width: min(100%, 178px);
     height: 104px;
 }
 
@@ -1965,34 +1969,38 @@ a:focus-visible,
     }
 
     .tool-track {
-        gap: 42px;
+        gap: 24px;
         animation-duration: 34s;
     }
 
     .tool-logo {
-        min-width: 86px;
+        flex-basis: 116px;
+        min-width: 0;
     }
 
     .tool-logo img {
-        width: 76px;
+        width: auto;
+        max-width: 112px;
         height: 76px;
     }
 
     .tool-logo-long {
-        min-width: 208px;
+        flex-basis: 116px;
     }
 
     .tool-logo-long img {
-        width: 200px;
+        width: auto;
+        max-width: 112px;
         height: 80px;
     }
 
     .tool-logo-wide {
-        min-width: 222px;
+        flex-basis: 116px;
     }
 
     .tool-logo-wide img {
-        width: 216px;
+        width: auto;
+        max-width: 112px;
         height: 88px;
     }
 
