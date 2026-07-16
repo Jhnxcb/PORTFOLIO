@@ -920,6 +920,67 @@
         setActiveNavigation();
         window.addEventListener("scroll", setActiveNavigation, { passive: true });
 
+        const toolCloud = document.querySelector(".tool-cloud");
+        const toolTrack = toolCloud?.querySelector(".tool-track");
+
+        if (toolCloud && toolTrack) {
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+            let pointerId = null;
+            let dragStartX = 0;
+            let dragStartScroll = 0;
+            let lastFrame = performance.now();
+            let resumeAt = 0;
+
+            const loopWidth = () => toolTrack.scrollWidth / 2;
+            const normalizeToolScroll = () => {
+                const width = loopWidth();
+                if (!width) return;
+                if (toolCloud.scrollLeft >= width) toolCloud.scrollLeft -= width;
+                if (toolCloud.scrollLeft < 0) toolCloud.scrollLeft += width;
+            };
+
+            toolCloud.addEventListener("pointerdown", (event) => {
+                if (event.pointerType === "mouse" && event.button !== 0) return;
+                pointerId = event.pointerId;
+                dragStartX = event.clientX;
+                dragStartScroll = toolCloud.scrollLeft;
+                toolCloud.setPointerCapture(pointerId);
+                toolCloud.classList.add("is-dragging");
+            });
+
+            toolCloud.addEventListener("pointermove", (event) => {
+                if (event.pointerId !== pointerId) return;
+                toolCloud.scrollLeft = dragStartScroll - (event.clientX - dragStartX) * 1.35;
+                normalizeToolScroll();
+            });
+
+            const endToolDrag = (event) => {
+                if (event.pointerId !== pointerId) return;
+                pointerId = null;
+                resumeAt = performance.now() + 900;
+                toolCloud.classList.remove("is-dragging");
+            };
+
+            toolCloud.addEventListener("pointerup", endToolDrag);
+            toolCloud.addEventListener("pointercancel", endToolDrag);
+            toolCloud.addEventListener("lostpointercapture", (event) => {
+                if (event.pointerId === pointerId) endToolDrag(event);
+            });
+
+            const animateTools = (now) => {
+                const elapsed = Math.min(now - lastFrame, 40);
+                lastFrame = now;
+                if (pointerId === null && now >= resumeAt && !reducedMotion.matches) {
+                    const speed = window.innerWidth <= 720 ? 72 : 52;
+                    toolCloud.scrollLeft += speed * elapsed / 1000;
+                    normalizeToolScroll();
+                }
+                requestAnimationFrame(animateTools);
+            };
+
+            requestAnimationFrame(animateTools);
+        }
+
         const revealTargets = document.querySelectorAll(".section-heading, .skill-card, .timeline-item, .tool-cloud, .sample-jump-card, .sample-block, .pubmat-category, .portfolio-card, .contact-section, .site-footer");
         const staggerGroups = [".skill-card", ".timeline-item", ".sample-jump-card", ".portfolio-card", ".pubmat-category"];
 

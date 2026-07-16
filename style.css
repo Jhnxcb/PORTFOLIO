@@ -681,8 +681,24 @@ a:focus-visible,
     position: relative;
     max-width: 100%;
     contain: layout paint;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding-block: 12px;
+    cursor: grab;
+    scrollbar-width: none;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    will-change: scroll-position;
+}
+
+.tool-cloud::-webkit-scrollbar {
+    display: none;
+}
+
+.tool-cloud.is-dragging {
+    cursor: grabbing;
 }
 
 .tool-cloud::before,
@@ -711,7 +727,6 @@ a:focus-visible,
     width: max-content;
     align-items: center;
     gap: clamp(24px, 4vw, 64px);
-    animation: tools-scroll 42s linear infinite;
 }
 
 .tool-logo {
@@ -752,15 +767,6 @@ a:focus-visible,
     height: 104px;
 }
 
-@keyframes tools-scroll {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -786,11 +792,8 @@ a:focus-visible,
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .tool-track {
-        animation: none;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: auto;
+    .tool-cloud {
+        will-change: auto;
     }
 }
 
@@ -1972,7 +1975,6 @@ a:focus-visible,
 
     .tool-track {
         gap: 24px;
-        animation-duration: 34s;
     }
 
     .tool-logo {
