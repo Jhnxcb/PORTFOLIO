@@ -679,7 +679,9 @@ a:focus-visible,
 
 .tool-cloud {
     position: relative;
+    width: 100%;
     max-width: 100%;
+    min-width: 0;
     contain: layout paint;
     overflow-x: auto;
     overflow-y: hidden;
@@ -743,6 +745,8 @@ a:focus-visible,
     height: 96px;
     object-fit: contain;
     filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.22));
+    pointer-events: none;
+    -webkit-user-drag: none;
 }
 
 .tool-logo-long {

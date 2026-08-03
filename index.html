@@ -39,7 +39,7 @@
             "name": "John Jacob Tamon",
             "url": "https://www.thestudiocove.me/",
             "image": "https://www.thestudiocove.me/profile.jpg",
-            "email": "mailto:tamonjohnjacob@gmail.com",
+            "email": "mailto:contact@thestudiocove.me",
             "telephone": "+63-956-166-5575",
             "jobTitle": [
                 "Graphics Designer",
@@ -659,11 +659,11 @@
             <h2 data-content="contact.title">Work With Me</h2>
             <p data-content="contact.description">For video editing, graphics, or social media support, reach me here.</p>
             <div class="contact-grid">
-                <a href="mailto:tamonjohnjacob@gmail.com" data-content="contact.email" data-content-href="mailto:" aria-label="Email John Jacob Tamon">
+                <a href="mailto:contact@thestudiocove.me" data-content="contact.email" data-content-href="mailto:" aria-label="Email The Studio Cove">
                     <span class="contact-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
                     </span>
-                    <span class="contact-label">tamonjohnjacob@gmail.com</span>
+                    <span class="contact-label">contact@thestudiocove.me</span>
                 </a>
                 <a href="tel:+639561665575" data-content="contact.phone" data-content-href="tel:" aria-label="Call John Jacob Tamon">
                     <span class="contact-icon" aria-hidden="true">
@@ -985,6 +985,8 @@
                 toolCloud.setPointerCapture(pointerId);
                 toolCloud.classList.add("is-dragging");
             });
+
+            toolCloud.addEventListener("dragstart", (event) => event.preventDefault());
 
             toolCloud.addEventListener("pointerenter", (event) => {
                 if (event.pointerType === "mouse") isMouseOver = true;
