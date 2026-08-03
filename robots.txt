@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://thestudiocove.me/sitemap.xml
+Sitemap: https://www.thestudiocove.me/sitemap.xml
