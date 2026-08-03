@@ -967,6 +967,7 @@
             let dragStartScroll = 0;
             let lastFrame = performance.now();
             let resumeAt = 0;
+            let isMouseOver = false;
 
             const loopWidth = () => toolTrack.scrollWidth / 2;
             const normalizeToolScroll = () => {
@@ -985,6 +986,16 @@
                 toolCloud.classList.add("is-dragging");
             });
 
+            toolCloud.addEventListener("pointerenter", (event) => {
+                if (event.pointerType === "mouse") isMouseOver = true;
+            });
+
+            toolCloud.addEventListener("pointerleave", (event) => {
+                if (event.pointerType !== "mouse") return;
+                isMouseOver = false;
+                resumeAt = performance.now() + 250;
+            });
+
             toolCloud.addEventListener("pointermove", (event) => {
                 if (event.pointerId !== pointerId) return;
                 toolCloud.scrollLeft = dragStartScroll - (event.clientX - dragStartX) * 1.35;
@@ -994,7 +1005,7 @@
             const endToolDrag = (event) => {
                 if (event.pointerId !== pointerId) return;
                 pointerId = null;
-                resumeAt = performance.now() + 900;
+                resumeAt = performance.now() + (event.pointerType === "mouse" ? 250 : 700);
                 toolCloud.classList.remove("is-dragging");
             };
 
@@ -1007,8 +1018,8 @@
             const animateTools = (now) => {
                 const elapsed = Math.min(now - lastFrame, 40);
                 lastFrame = now;
-                if (pointerId === null && now >= resumeAt && !reducedMotion.matches) {
-                    const speed = window.innerWidth <= 720 ? 72 : 52;
+                if (pointerId === null && !isMouseOver && now >= resumeAt && !reducedMotion.matches) {
+                    const speed = window.innerWidth <= 720 ? 88 : 66;
                     toolCloud.scrollLeft += speed * elapsed / 1000;
                     normalizeToolScroll();
                 }
