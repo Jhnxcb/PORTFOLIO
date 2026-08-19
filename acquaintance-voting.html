@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Acquaintance Party 2026 | Voting Results</title>
+    <meta name="description" content="Live voting results for the Southland College Acquaintance Party 2026.">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Montserrat:wght@700;800;900&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #100b1c;
+            --panel: rgba(255, 255, 255, 0.075);
+            --panel-strong: rgba(255, 255, 255, 0.11);
+            --line: rgba(255, 255, 255, 0.14);
+            --text: #faf7ff;
+            --muted: #cfc4dc;
+            --violet: #8b5cf6;
+            --pink: #ec4899;
+            --gold: #fbbf24;
+            --success: #4ade80;
+            --danger: #fb7185;
+            --radius: 22px;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { min-height: 100%; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 12% 6%, rgba(139, 92, 246, 0.28), transparent 34rem),
+                radial-gradient(circle at 88% 12%, rgba(236, 72, 153, 0.2), transparent 28rem),
+                linear-gradient(155deg, #180e2a 0%, var(--bg) 48%, #09060f 100%);
+            font-family: "DM Sans", system-ui, sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.32;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+        }
+
+        button { font: inherit; }
+
+        .page-shell {
+            position: relative;
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 56px 0 72px;
+        }
+
+        .event-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 28px;
+            align-items: end;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .eyebrow {
+            margin: 0 0 12px;
+            color: #d8c7ff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 820px;
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            font-size: clamp(2.25rem, 7vw, 5.5rem);
+            line-height: 0.96;
+            letter-spacing: -0.055em;
+        }
+
+        .subtitle {
+            max-width: 680px;
+            margin: 20px 0 0;
+            color: var(--muted);
+            font-size: clamp(1rem, 2vw, 1.15rem);
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            min-width: max-content;
+            padding: 10px 15px;
+            border: 1px solid rgba(74, 222, 128, 0.35);
+            border-radius: 999px;
+            color: #bbf7d0;
+            background: rgba(74, 222, 128, 0.08);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .live-badge::before {
+            content: "";
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 0 5px rgba(74, 222, 128, 0.12);
+        }
+
+        .summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            justify-content: space-between;
+            margin: 26px 0 28px;
+            padding: 16px 18px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.045);
+            backdrop-filter: blur(14px);
+        }
+
+        .summary-copy {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px 22px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .summary-copy strong { color: var(--text); }
+
+        .refresh-button {
+            padding: 9px 14px;
+            border: 1px solid rgba(216, 199, 255, 0.32);
+            border-radius: 10px;
+            color: var(--text);
+            background: rgba(139, 92, 246, 0.14);
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 160ms ease, transform 160ms ease;
+        }
+
+        .refresh-button:hover { background: rgba(139, 92, 246, 0.26); }
+        .refresh-button:active { transform: translateY(1px); }
+        .refresh-button:disabled { cursor: wait; opacity: 0.62; }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            overflow: hidden;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: linear-gradient(155deg, var(--panel-strong), var(--panel));
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(16px);
+        }
+
+        .category-card:first-child { grid-column: 1 / -1; }
+
+        .category-heading {
+            display: flex;
+            gap: 16px;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .category-heading h2 {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            letter-spacing: -0.025em;
+        }
+
+        .category-total {
+            color: var(--muted);
+            font-size: 0.86rem;
+            white-space: nowrap;
+        }
+
+        .option-list {
+            display: grid;
+            gap: 17px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .option-row { min-width: 0; }
+
+        .option-copy {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 16px;
+            align-items: baseline;
+            margin-bottom: 7px;
+        }
+
+        .option-name {
+            overflow: hidden;
+            font-weight: 700;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .option-result {
+            color: var(--muted);
+            font-size: 0.86rem;
+            white-space: nowrap;
+        }
+
+        .option-result strong {
+            color: var(--text);
+            font-size: 0.98rem;
+        }
+
+        .bar-track {
+            height: 9px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.09);
+        }
+
+        .bar-fill {
+            width: 0;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--violet), var(--pink));
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+            transition: width 650ms cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .option-row:first-child .bar-fill {
+            background: linear-gradient(90deg, var(--gold), #fb7185);
+            box-shadow: 0 0 22px rgba(251, 191, 36, 0.28);
+        }
+
+        .state-panel {
+            grid-column: 1 / -1;
+            padding: 46px 24px;
+            border: 1px dashed rgba(255, 255, 255, 0.22);
+            border-radius: var(--radius);
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .state-panel h2 {
+            margin: 0 0 8px;
+            color: var(--text);
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .state-panel p { margin: 0 auto; max-width: 620px; }
+        .state-panel.error { border-color: rgba(251, 113, 133, 0.4); }
+
+        .page-footer {
+            margin-top: 30px;
+            color: #a99db7;
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        @media (max-width: 760px) {
+            .page-shell { padding-top: 34px; }
+            .event-header { grid-template-columns: 1fr; align-items: start; }
+            .results-grid { grid-template-columns: 1fr; }
+            .category-card:first-child { grid-column: auto; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-shell">
+        <header class="event-header">
+            <div>
+                <p class="eyebrow">Southland College · Acquaintance Party 2026</p>
+                <h1>Voting results</h1>
+                <p class="subtitle">Live totals from the official Google Form. Results update automatically as responses arrive.</p>
+            </div>
+            <div class="live-badge" id="live-badge">Live results</div>
+        </header>
+
+        <section class="summary" aria-label="Voting summary">
+            <div class="summary-copy">
+                <span><strong id="response-count">—</strong> participating responses</span>
+                <span>Updated <strong id="updated-time">—</strong></span>
+            </div>
+            <button class="refresh-button" id="refresh-button" type="button">Refresh results</button>
+        </section>
+
+        <section class="results-grid" id="results" aria-live="polite" aria-busy="true">
+            <div class="state-panel">
+                <h2>Loading results…</h2>
+                <p>Getting the latest totals from the official response sheet.</p>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            Only aggregate vote totals are displayed. Personal form-response information is never shown on this page.
+        </footer>
+    </main>
+
+    <script>
+        // After deploying google-apps-script.gs, paste its /exec Web App URL below.
+        const RESULTS_API_URL = "https://script.google.com/macros/s/AKfycbyng-ftFOT2OsuEIpKf9MAMeqkXA8W4ngosFOmEks7NLyz4kT1vCEHsPVqOGMO6ZtnE/exec";
+        const AUTO_REFRESH_MS = 30_000;
+
+        const resultsElement = document.querySelector("#results");
+        const responseCountElement = document.querySelector("#response-count");
+        const updatedTimeElement = document.querySelector("#updated-time");
+        const refreshButton = document.querySelector("#refresh-button");
+        const liveBadge = document.querySelector("#live-badge");
+
+        function escapeHtml(value) {
+            return String(value)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function renderState(title, message, isError = false) {
+            resultsElement.innerHTML = `
+                <div class="state-panel${isError ? " error" : ""}">
+                    <h2>${escapeHtml(title)}</h2>
+                    <p>${escapeHtml(message)}</p>
+                </div>`;
+        }
+
+        function renderCategories(categories) {
+            if (!Array.isArray(categories) || categories.length === 0) {
+                renderState("No votes yet", "Results will appear here after the first valid response.");
+                return;
+            }
+
+            resultsElement.innerHTML = categories.map((category) => {
+                const options = Array.isArray(category.options) ? category.options : [];
+                const optionRows = options.map((option) => `
+                    <li class="option-row">
+                        <div class="option-copy">
+                            <span class="option-name" title="${escapeHtml(option.name)}">${escapeHtml(option.name)}</span>
+                            <span class="option-result"><strong>${Number(option.count).toLocaleString()}</strong> · ${Number(option.percent).toFixed(1)}%</span>
+                        </div>
+                        <div class="bar-track" role="img" aria-label="${escapeHtml(option.name)}: ${Number(option.percent).toFixed(1)} percent">
+                            <div class="bar-fill" style="width: ${Math.max(0, Math.min(100, Number(option.percent)))}%"></div>
+                        </div>
+                    </li>`).join("");
+
+                return `
+                    <article class="category-card">
+                        <div class="category-heading">
+                            <h2>${escapeHtml(category.name)}</h2>
+                            <span class="category-total">${Number(category.totalVotes).toLocaleString()} votes</span>
+                        </div>
+                        <ol class="option-list">${optionRows}</ol>
+                    </article>`;
+            }).join("");
+        }
+
+        async function loadResults() {
+            if (RESULTS_API_URL.startsWith("PASTE_")) {
+                renderState(
+                    "Connect the Google Sheet",
+                    "Deploy the included Google Apps Script, then paste its Web App URL into RESULTS_API_URL in this file."
+                );
+                resultsElement.setAttribute("aria-busy", "false");
+                return;
+            }
+
+            refreshButton.disabled = true;
+            refreshButton.textContent = "Refreshing…";
+            resultsElement.setAttribute("aria-busy", "true");
+
+            try {
+                const requestUrl = `${RESULTS_API_URL}?t=${Date.now()}`;
+                const response = await fetch(requestUrl, { method: "GET", redirect: "follow" });
+                if (!response.ok) throw new Error(`Request failed (${response.status})`);
+
+                const data = await response.json();
+                if (data.error) throw new Error(data.error);
+
+                if (data.resultsVisible === false) {
+                    liveBadge.textContent = "Results hidden";
+                    renderState("Voting is in progress", data.message || "Results will be published after voting closes.");
+                    responseCountElement.textContent = "—";
+                } else {
+                    liveBadge.textContent = "Live results";
+                    renderCategories(data.categories);
+                    responseCountElement.textContent = Number(data.totalResponses || 0).toLocaleString();
+                }
+
+                const updatedAt = data.updatedAt ? new Date(data.updatedAt) : new Date();
+                updatedTimeElement.textContent = updatedAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+            } catch (error) {
+                console.error(error);
+                renderState("Results unavailable", "The page could not reach the voting source. Please try refreshing in a moment.", true);
+            } finally {
+                refreshButton.disabled = false;
+                refreshButton.textContent = "Refresh results";
+                resultsElement.setAttribute("aria-busy", "false");
+            }
+        }
+
+        refreshButton.addEventListener("click", loadResults);
+        loadResults();
+        window.setInterval(loadResults, AUTO_REFRESH_MS);
+    </script>
+</body>
+</html>
