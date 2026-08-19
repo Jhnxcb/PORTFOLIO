@@ -178,7 +178,14 @@
             backdrop-filter: blur(16px);
         }
 
-        .category-card:first-child { grid-column: 1 / -1; }
+        .category-card--featured {
+            grid-column: 1 / -1;
+            border-color: rgba(251, 191, 36, 0.42);
+            background:
+                radial-gradient(circle at 90% 0%, rgba(251, 191, 36, 0.14), transparent 24rem),
+                linear-gradient(155deg, rgba(139, 92, 246, 0.2), var(--panel));
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.26), 0 0 0 1px rgba(251, 191, 36, 0.08);
+        }
 
         .category-heading {
             display: flex;
@@ -193,6 +200,26 @@
             font-family: "Montserrat", sans-serif;
             font-size: clamp(1.3rem, 3vw, 1.8rem);
             letter-spacing: -0.025em;
+        }
+
+        .category-title-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .featured-label {
+            display: inline-flex;
+            padding: 5px 9px;
+            border: 1px solid rgba(251, 191, 36, 0.38);
+            border-radius: 999px;
+            color: #fde68a;
+            background: rgba(251, 191, 36, 0.1);
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .category-total {
@@ -276,18 +303,120 @@
         .state-panel p { margin: 0 auto; max-width: 620px; }
         .state-panel.error { border-color: rgba(251, 113, 133, 0.4); }
 
-        .page-footer {
-            margin-top: 30px;
+        .page-footer { margin-top: 34px; }
+
+        .privacy-note {
+            margin: 0 0 18px;
             color: #a99db7;
             font-size: 0.82rem;
             text-align: center;
         }
 
+        .credit-card {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: 22px;
+            align-items: center;
+            padding: 24px;
+            border: 1px solid rgba(216, 199, 255, 0.22);
+            border-radius: var(--radius);
+            background:
+                radial-gradient(circle at 0% 50%, rgba(139, 92, 246, 0.2), transparent 22rem),
+                linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.045));
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .credit-logo-link {
+            display: grid;
+            width: 74px;
+            height: 74px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .credit-logo {
+            display: block;
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+        }
+
+        .credit-eyebrow {
+            margin: 0 0 3px;
+            color: #d8c7ff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .credit-copy h2 {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            font-size: clamp(1.25rem, 3vw, 1.65rem);
+            letter-spacing: -0.025em;
+        }
+
+        .credit-description {
+            max-width: 650px;
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .credit-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 11px 17px;
+            border: 1px solid rgba(216, 199, 255, 0.34);
+            border-radius: 11px;
+            color: var(--text);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.34), rgba(236, 72, 153, 0.22));
+            font-size: 0.86rem;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: border-color 160ms ease, transform 160ms ease;
+        }
+
+        .credit-cta:hover {
+            border-color: rgba(216, 199, 255, 0.68);
+            transform: translateY(-2px);
+        }
+
+        .creator-credit {
+            margin: 15px 0 0;
+            color: #9588a5;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        .creator-credit a {
+            color: #d8c7ff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .creator-credit a:hover { text-decoration: underline; }
+
         @media (max-width: 760px) {
             .page-shell { padding-top: 34px; }
             .event-header { grid-template-columns: 1fr; align-items: start; }
             .results-grid { grid-template-columns: 1fr; }
-            .category-card:first-child { grid-column: auto; }
+            .category-card--featured { grid-column: auto; }
+            .credit-card { grid-template-columns: auto minmax(0, 1fr); }
+            .credit-cta { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 460px) {
+            .credit-card { grid-template-columns: 1fr; text-align: center; }
+            .credit-logo-link { margin: 0 auto; }
+            .credit-cta { grid-column: auto; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -322,7 +451,19 @@
         </section>
 
         <footer class="page-footer">
-            Only aggregate vote totals are displayed. Personal form-response information is never shown on this page.
+            <p class="privacy-note">Only aggregate vote totals are displayed. Personal form-response information is never shown on this page.</p>
+            <div class="credit-card">
+                <a class="credit-logo-link" href="/" aria-label="Visit The Studio Cove portfolio">
+                    <img class="credit-logo" src="the-studio-cove-logo-john-jacob-tamon.png" alt="The Studio Cove logo">
+                </a>
+                <div class="credit-copy">
+                    <p class="credit-eyebrow">Designed &amp; developed by</p>
+                    <h2>The Studio Cove</h2>
+                    <p class="credit-description">Creative event dashboards, graphics, video editing, and digital experiences shaped by John Jacob Tamon.</p>
+                </div>
+                <a class="credit-cta" href="/">Explore The Studio Cove <span aria-hidden="true">→</span></a>
+            </div>
+            <p class="creator-credit">Live results experience by <a href="/">John Jacob Tamon · The Studio Cove</a></p>
         </footer>
     </main>
 
@@ -360,8 +501,15 @@
                 return;
             }
 
-            resultsElement.innerHTML = categories.map((category) => {
+            const orderedCategories = [...categories].sort((a, b) => {
+                const aIsTheme = String(a.name).toLowerCase() === "theme";
+                const bIsTheme = String(b.name).toLowerCase() === "theme";
+                return Number(bIsTheme) - Number(aIsTheme);
+            });
+
+            resultsElement.innerHTML = orderedCategories.map((category) => {
                 const options = Array.isArray(category.options) ? category.options : [];
+                const isFeatured = String(category.name).toLowerCase() === "theme";
                 const optionRows = options.map((option) => `
                     <li class="option-row">
                         <div class="option-copy">
@@ -374,9 +522,12 @@
                     </li>`).join("");
 
                 return `
-                    <article class="category-card">
+                    <article class="category-card${isFeatured ? " category-card--featured" : ""}">
                         <div class="category-heading">
-                            <h2>${escapeHtml(category.name)}</h2>
+                            <div class="category-title-group">
+                                <h2>${escapeHtml(category.name)}</h2>
+                                ${isFeatured ? '<span class="featured-label">Featured vote</span>' : ""}
+                            </div>
                             <span class="category-total">${Number(category.totalVotes).toLocaleString()} votes</span>
                         </div>
                         <ol class="option-list">${optionRows}</ol>
