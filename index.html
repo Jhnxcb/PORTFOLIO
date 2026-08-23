@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Jacob Tamon | The Studio Cove</title>
-    <meta name="description" content="Portfolio of John Jacob Tamon, founder of The Studio Cove. Graphics designer, video editor, social media manager, and IT student.">
+    <title>John Jacob Tamon | Creative Portfolio &amp; The Studio Cove</title>
+    <meta name="description" content="Official portfolio of John Jacob Tamon, a graphic designer, video editor, social media manager, and founder of The Studio Cove in Negros Occidental, Philippines.">
+    <meta name="author" content="John Jacob Tamon">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://www.thestudiocove.me/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="The Studio Cove">
     <meta property="og:url" content="https://www.thestudiocove.me/">
-    <meta property="og:title" content="John Jacob Tamon | The Studio Cove">
-    <meta property="og:description" content="Portfolio of John Jacob Tamon, founder of The Studio Cove. Graphics designer, video editor, social media manager, and IT student.">
+    <meta property="og:title" content="John Jacob Tamon | Creative Portfolio &amp; The Studio Cove">
+    <meta property="og:description" content="Official portfolio of John Jacob Tamon, a graphic designer, video editor, social media manager, and founder of The Studio Cove.">
     <meta property="og:image" content="https://www.thestudiocove.me/the-studio-cove-contact-card-john-jacob-tamon.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="474">
     <meta property="og:image:height" content="266">
     <meta property="og:image:alt" content="The Studio Cove contact card for John Jacob Tamon">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="John Jacob Tamon | The Studio Cove">
-    <meta name="twitter:description" content="Portfolio of John Jacob Tamon, founder of The Studio Cove. Graphics designer, video editor, social media manager, and IT student.">
+    <meta name="twitter:title" content="John Jacob Tamon | Creative Portfolio &amp; The Studio Cove">
+    <meta name="twitter:description" content="Official portfolio of John Jacob Tamon, a graphic designer, video editor, social media manager, and founder of The Studio Cove.">
     <meta name="twitter:image" content="https://www.thestudiocove.me/the-studio-cove-contact-card-john-jacob-tamon.png">
     <meta name="twitter:image:alt" content="The Studio Cove contact card for John Jacob Tamon">
     <link rel="image_src" href="https://www.thestudiocove.me/the-studio-cove-contact-card-john-jacob-tamon.png">
@@ -32,35 +33,76 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        "url": "https://www.thestudiocove.me/",
-        "name": "John Jacob Tamon | The Studio Cove",
-        "description": "Portfolio of John Jacob Tamon, founder of The Studio Cove and a graphics designer, video editor, social media manager, and IT student.",
-        "mainEntity": {
-            "@type": "Person",
-            "name": "John Jacob Tamon",
-            "url": "https://www.thestudiocove.me/",
-            "image": "https://www.thestudiocove.me/portrait-john-jacob-tamon.jpg",
-            "email": "mailto:contact@thestudiocove.me",
-            "telephone": "+63-956-166-5575",
-            "jobTitle": [
-                "Graphics Designer",
-                "Video Editor",
-                "Social Media Manager"
-            ],
-            "worksFor": {
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://www.thestudiocove.me/#website",
+                "url": "https://www.thestudiocove.me/",
+                "name": "The Studio Cove",
+                "alternateName": "John Jacob Tamon Portfolio",
+                "publisher": {
+                    "@id": "https://www.thestudiocove.me/#person"
+                }
+            },
+            {
+                "@type": "ProfilePage",
+                "@id": "https://www.thestudiocove.me/#profile-page",
+                "url": "https://www.thestudiocove.me/",
+                "name": "John Jacob Tamon | Creative Portfolio & The Studio Cove",
+                "description": "Official portfolio of John Jacob Tamon, a graphic designer, video editor, social media manager, and founder of The Studio Cove.",
+                "isPartOf": {
+                    "@id": "https://www.thestudiocove.me/#website"
+                },
+                "mainEntity": {
+                    "@id": "https://www.thestudiocove.me/#person"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://www.thestudiocove.me/#person",
+                "name": "John Jacob Tamon",
+                "alternateName": "Jacob Tamon",
+                "url": "https://www.thestudiocove.me/",
+                "image": "https://www.thestudiocove.me/portrait-john-jacob-tamon.jpg",
+                "email": "mailto:contact@thestudiocove.me",
+                "telephone": "+63-956-166-5575",
+                "jobTitle": [
+                    "Graphic Designer",
+                    "Video Editor",
+                    "Social Media Manager"
+                ],
+                "knowsAbout": [
+                    "Graphic design",
+                    "Video editing",
+                    "Social media management",
+                    "Multimedia production"
+                ],
+                "sameAs": [
+                    "https://www.youtube.com/@jhnxcb_",
+                    "https://www.linkedin.com/in/jhnxcb",
+                    "https://www.instagram.com/the.studiocove_/"
+                ],
+                "worksFor": {
+                    "@id": "https://www.thestudiocove.me/#organization"
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Cauayan",
+                    "addressRegion": "Negros Occidental",
+                    "addressCountry": "PH"
+                }
+            },
+            {
                 "@type": "Organization",
+                "@id": "https://www.thestudiocove.me/#organization",
                 "name": "The Studio Cove",
                 "url": "https://www.thestudiocove.me/",
-                "logo": "https://www.thestudiocove.me/the-studio-cove-logo-john-jacob-tamon.png"
-            },
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Cauayan",
-                "addressRegion": "Negros Occidental",
-                "addressCountry": "PH"
+                "logo": "https://www.thestudiocove.me/the-studio-cove-logo-john-jacob-tamon.png",
+                "founder": {
+                    "@id": "https://www.thestudiocove.me/#person"
+                }
             }
-        }
+        ]
     }
     </script>
 </head>
@@ -91,7 +133,7 @@
         <section class="studio-intro" id="about">
             <div>
                 <p class="eyebrow" data-content="studio.kicker">The Studio Cove</p>
-                <h1 data-content="studio.title">A personal studio brand built by Jacob.</h1>
+                <h2 data-content="studio.title">A personal studio brand built by Jacob.</h2>
             </div>
             <div class="definition-card">
                 <p data-content="studio.description1"><strong>The Studio Cove</strong> is my creative workspace for multimedia work. A cove is a sheltered place where rough waters calm down, so the name represents how I bring raw ideas into a focused space and shape them into clean, polished digital work.</p>
@@ -102,7 +144,7 @@
         <header class="hero">
             <div class="hero-copy">
                 <p class="eyebrow" data-content="hero.kicker">Concept to cut.</p>
-                <h2 data-content="hero.name">John Jacob Tamon</h2>
+                <h1 data-content="hero.name">John Jacob Tamon</h1>
                 <p class="role-line" data-content="hero.role">Graphics Designer | Video Editor | Social Media Manager | IT Student</p>
                 <p class="hero-text" data-content="hero.description">I create multimedia assets, manage social content, edit videos, and support digital workflows through The Studio Cove.</p>
                 <div class="hero-actions">
@@ -679,17 +721,23 @@
                     </span>
                     <span class="contact-label">Cauayan, Negros Occidental, Philippines</span>
                 </span>
-                <a href="https://www.linkedin.com/in/jhnxcb" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
+                <a href="https://www.linkedin.com/in/jhnxcb" target="_blank" rel="me noopener noreferrer" aria-label="Open John Jacob Tamon's LinkedIn profile">
                     <span class="contact-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24"><path d="M6.5 10v8"></path><path d="M6.5 6v.1"></path><path d="M11 18v-8"></path><path d="M11 13.5c0-2.2 1.2-3.5 3.1-3.5 1.8 0 3.4 1.1 3.4 3.8V18"></path><path d="M3 3h18v18H3z"></path></svg>
                     </span>
                     <span class="contact-label">LinkedIn</span>
                 </a>
-                <a href="https://www.instagram.com/the.studiocove_/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile">
+                <a href="https://www.instagram.com/the.studiocove_/" target="_blank" rel="me noopener noreferrer" aria-label="Open The Studio Cove Instagram profile">
                     <span class="contact-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"></rect><circle cx="12" cy="12" r="3.5"></circle><path d="M17 7.1v.1"></path></svg>
                     </span>
                     <span class="contact-label">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/@jhnxcb_" target="_blank" rel="me noopener noreferrer" aria-label="Open John Jacob Tamon's YouTube channel">
+                    <span class="contact-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M22 12s0-4-1-5-2-2c-5-1-9-1-14 0-1 0-2 1-2 2-1 1-1 5-1 5s0 4 1 5c0 1 1 2 2 2 5 1 9 1 14 0 1 0 2-1 2-2 1-1 1-5 1-5z"></path><path d="m10 9 5 3-5 3z"></path></svg>
+                    </span>
+                    <span class="contact-label">YouTube</span>
                 </a>
                 <a href="https://docs.google.com/document/d/1MElLhYjIzHR-QHp0Dn2jjxaBNIR13qNP/export?format=docx" aria-label="Download resume">
                     <span class="contact-icon" aria-hidden="true">
