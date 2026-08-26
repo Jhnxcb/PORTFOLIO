@@ -123,8 +123,8 @@
         }
         .motion-ready .service-card.reveal.is-visible:hover { transform: translateY(-6px) scale(1.005); }
         .inquire-service:active, #submit-inquiry:active, .filter-btn:active { transform: scale(.97); }
-        .modal-visible { opacity: 1; pointer-events: auto; }
-        .modal-visible .modal-panel { transform: translateY(0) scale(1); }
+        #success-modal.modal-visible { opacity: 1 !important; pointer-events: auto !important; }
+        #success-modal.modal-visible .modal-panel { transform: translateY(0) scale(1) !important; }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
         }

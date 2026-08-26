@@ -51,8 +51,8 @@
         .wallet-card:hover { transform:translateY(-5px); box-shadow:0 28px 70px rgba(0,0,0,.28); }
         .motion-ready .wallet-card.reveal.is-visible:hover { transform:translateY(-5px) scale(1.005); box-shadow:0 28px 70px rgba(0,0,0,.28); }
         #save-gcash-qr:active, #open-gcash:active, #submit-proof:active { transform:scale(.97); }
-        .modal-visible { opacity:1; pointer-events:auto; }
-        .modal-visible .modal-panel { transform:translateY(0) scale(1); }
+        #success-modal.modal-visible { opacity:1!important; pointer-events:auto!important; }
+        #success-modal.modal-visible .modal-panel { transform:translateY(0) scale(1)!important; }
         @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; } }
     </style>
 </head>
