@@ -132,9 +132,9 @@
 
     <script>
         (() => {
-            // Add the new standalone Google Apps Script /exec URL after deployment.
-            const PAYMENT_API_URL = "";
+            const PAYMENT_API_URL = "https://script.google.com/macros/s/AKfycbwI8l123QxANCLJ1E_5zxD37uovK0GFjbwML7tfT0YnXtOl28lvpKqcR9C49yMbns2Z/exec";
             const MAX_PROOF_BYTES = 5 * 1024 * 1024;
+            const SUBMISSION_UI_TIMEOUT_MS = 8000;
             const walletMessage = document.getElementById("wallet-message");
             const proofForm = document.getElementById("proof-form");
             const proofFile = document.getElementById("proof-file");
@@ -194,6 +194,14 @@
                 reader.readAsDataURL(file);
             });
 
+            const waitForSubmission = (request) => {
+                request.catch((error) => console.error("Background payment request failed:", error));
+                return Promise.race([
+                    request,
+                    new Promise((resolve) => window.setTimeout(resolve, SUBMISSION_UI_TIMEOUT_MS))
+                ]);
+            };
+
             proofForm.addEventListener("submit", async (event) => {
                 event.preventDefault();
                 if (!proofForm.checkValidity()) { proofForm.reportValidity(); return; }
@@ -224,7 +232,7 @@
                         website: formData.get("website"),
                         proof: { name: file.name, type: file.type, data: await fileToBase64(file) }
                     };
-                    await fetch(PAYMENT_API_URL, { method:"POST", mode:"no-cors", body:new URLSearchParams({ payload:JSON.stringify(payload) }) });
+                    await waitForSubmission(fetch(PAYMENT_API_URL, { method:"POST", mode:"no-cors", body:new URLSearchParams({ payload:JSON.stringify(payload) }) }));
                     proofForm.reset();
                     proofFileName.textContent = "Image file · maximum 5 MB";
                     modal.classList.add("modal-visible");

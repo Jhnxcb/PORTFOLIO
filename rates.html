@@ -311,9 +311,9 @@
 
     <script>
         (() => {
-            // Add the new standalone Google Apps Script /exec URL after deployment.
-            const BOOKING_API_URL = "";
+            const BOOKING_API_URL = "https://script.google.com/macros/s/AKfycbwI8l123QxANCLJ1E_5zxD37uovK0GFjbwML7tfT0YnXtOl28lvpKqcR9C49yMbns2Z/exec";
             const MAX_REFERENCE_BYTES = 10 * 1024 * 1024;
+            const SUBMISSION_UI_TIMEOUT_MS = 8000;
             const filterButtons = document.querySelectorAll(".filter-btn");
             const serviceCards = document.querySelectorAll(".service-card");
             const categoryGroups = document.querySelectorAll(".category-group");
@@ -434,6 +434,14 @@
                 reader.readAsDataURL(file);
             });
 
+            const waitForSubmission = (request) => {
+                request.catch((error) => console.error("Background inquiry request failed:", error));
+                return Promise.race([
+                    request,
+                    new Promise((resolve) => window.setTimeout(resolve, SUBMISSION_UI_TIMEOUT_MS))
+                ]);
+            };
+
             inquiryForm.addEventListener("submit", async (event) => {
                 event.preventDefault();
                 if (!inquiryForm.checkValidity()) {
@@ -481,11 +489,11 @@
                     };
                     const requestBody = new URLSearchParams({ payload: JSON.stringify(payload) });
 
-                    await fetch(BOOKING_API_URL, {
+                    await waitForSubmission(fetch(BOOKING_API_URL, {
                         method: "POST",
                         mode: "no-cors",
                         body: requestBody
-                    });
+                    }));
 
                     sessionStorage.setItem("coveBooking", JSON.stringify({
                         fullName: payload.fullName,
