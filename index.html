@@ -112,19 +112,17 @@
     <nav class="navbar" aria-label="Main navigation">
         <a class="brand" href="#top" aria-label="The Studio Cove home">
             <img class="brand-logo" src="the-studio-cove-logo-john-jacob-tamon.png" alt="The Studio Cove logo by John Jacob Tamon">
+            <span class="brand-wordmark">The Studio Cove</span>
         </a>
 
         <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span class="nav-toggle-text">Menu</span>
+            <span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span></span>
         </button>
 
         <div class="nav-links" id="nav-links">
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#samples">Samples</a>
-            <a href="#contact">Contact</a>
+            <a href="/rates">Rates</a>
+            <a href="/payment">Payment</a>
         </div>
     </nav>
 
@@ -750,16 +748,7 @@
     </main>
 
     <footer class="site-footer">
-        <a class="footer-brand" href="#top" aria-label="The Studio Cove home">
-            <img src="the-studio-cove-logo-john-jacob-tamon.png" alt="The Studio Cove logo by John Jacob Tamon">
-        </a>
-        <p>The Studio Cove portfolio of John Jacob Tamon.</p>
-        <div class="footer-links" aria-label="Footer navigation">
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#samples">Samples</a>
-            <a href="#contact">Contact</a>
-        </div>
+        <p>© <span id="year"></span> The Studio Cove. Built by John Jacob Tamon.</p>
     </footer>
 
     <div class="image-modal" aria-hidden="true" aria-modal="true" role="dialog" aria-label="Expanded sample preview">
@@ -857,9 +846,12 @@
 
         const navbar = document.querySelector(".navbar");
         const navToggle = document.querySelector(".nav-toggle");
+        const navToggleText = document.querySelector(".nav-toggle-text");
         const navLinks = document.querySelectorAll(".nav-links a");
         const sections = Array.from(document.querySelectorAll("#about, #skills, #samples, #contact"));
         let lastFocusedElement = null;
+
+        document.getElementById("year").textContent = new Date().getFullYear();
 
         const initParticles = () => {
             const canvas = document.querySelector(".particle-canvas");
@@ -973,18 +965,31 @@
 
         initParticles();
 
+        const closeNavigation = () => {
+            navbar.classList.remove("is-open");
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.setAttribute("aria-label", "Open navigation menu");
+            navToggleText.textContent = "Menu";
+        };
+
         navToggle.addEventListener("click", () => {
             const isOpen = navbar.classList.toggle("is-open");
             navToggle.setAttribute("aria-expanded", String(isOpen));
             navToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+            navToggleText.textContent = isOpen ? "Close" : "Menu";
         });
 
         navLinks.forEach((link) => {
-            link.addEventListener("click", () => {
-                navbar.classList.remove("is-open");
-                navToggle.setAttribute("aria-expanded", "false");
-                navToggle.setAttribute("aria-label", "Open navigation menu");
-            });
+            link.addEventListener("click", closeNavigation);
+        });
+
+        document.addEventListener("click", (event) => {
+            if (navbar.classList.contains("is-open") && !navbar.contains(event.target)) closeNavigation();
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key !== "Escape" || !navbar.classList.contains("is-open")) return;
+            closeNavigation();
+            navToggle.focus();
         });
 
         const setActiveNavigation = () => {

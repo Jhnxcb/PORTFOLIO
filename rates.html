@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#18181b">
+    <title>Services &amp; Rate Card | The Studio Cove</title>
+    <meta name="description" content="Affordable graphic design and video editing rates for campus organizations, events, and local MSMEs in the Philippines. Book The Studio Cove online.">
+    <meta name="author" content="John Jacob Tamon">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://www.thestudiocove.me/rates">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="The Studio Cove">
+    <meta property="og:url" content="https://www.thestudiocove.me/rates">
+    <meta property="og:title" content="Services &amp; Rate Card | The Studio Cove">
+    <meta property="og:description" content="Student and local org-friendly graphic design and video editing rates in Philippine Peso.">
+    <meta property="og:image" content="https://www.thestudiocove.me/the-studio-cove-contact-card-john-jacob-tamon.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Services &amp; Rate Card | The Studio Cove">
+    <meta name="twitter:description" content="Student and local org-friendly creative services, priced in PHP.">
+    <meta name="twitter:image" content="https://www.thestudiocove.me/the-studio-cove-contact-card-john-jacob-tamon.png">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Montserrat:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cove: { cream: "#f4eee8", sage: "#c5b4a3", mist: "#d9cec3", charcoal: "#1e2022" }
+                    },
+                    fontFamily: {
+                        sans: ["DM Sans", "Segoe UI", "sans-serif"],
+                        display: ["Montserrat", "DM Sans", "Segoe UI", "sans-serif"]
+                    },
+                    boxShadow: { cove: "0 28px 90px rgba(0, 0, 0, 0.34)" }
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            background:
+                radial-gradient(circle at 50% -10%, rgba(197, 180, 163, 0.18), transparent 34rem),
+                radial-gradient(circle at 90% 35%, rgba(244, 238, 232, 0.07), transparent 30rem),
+                linear-gradient(145deg, #1e2022 0%, #17191b 62%, #101112 100%);
+        }
+        .grain { background-image: radial-gradient(rgba(255, 255, 255, 0.16) 0.55px, transparent 0.55px); background-size: 5px 5px; }
+        .apple-panel {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.035));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 24px 70px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(24px);
+        }
+        .filter-shell {
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 10px 32px rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(20px);
+        }
+        .filter-btn { border-radius: 999px; }
+        .service-card {
+            min-height: 330px;
+            border-radius: 1.75rem;
+            background: linear-gradient(155deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.028));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055), 0 20px 55px rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(18px);
+        }
+        .service-card h4, .service-card > div > p, .category-group h3 { font-weight: 600; }
+        .service-card .inquire-service {
+            margin-top: auto;
+            min-height: 3.25rem;
+            padding: 0.8rem 1.1rem;
+            border: 1px solid rgba(197, 180, 163, 0.28);
+            border-radius: 999px;
+            background: rgba(197, 180, 163, 0.1);
+            color: #f4eee8;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+        }
+        .service-card .inquire-service:hover {
+            border-color: #c5b4a3;
+            background: #c5b4a3;
+            color: #181a1c;
+        }
+        #inquiry-form, #payment article, #policies { border-radius: 2rem; }
+        .field { border-radius: 0.85rem; background-color: rgba(255, 255, 255, 0.055); }
+        @media (min-width: 1024px) {
+            .service-directory.show-all {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                align-items: start;
+                gap: 2rem;
+            }
+            .service-directory.show-all .category-group > .grid { grid-template-columns: minmax(0, 1fr); }
+        }
+        @media (min-width: 1180px) {
+            .service-directory.show-all .category-group > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1024px) {
+            .service-directory.show-all .service-card { min-height: 520px; }
+        }
+        .qr-placeholder {
+            background-color: #f4eee8;
+            background-image:
+                linear-gradient(90deg, #1e2022 12px, transparent 12px),
+                linear-gradient(#1e2022 12px, transparent 12px),
+                linear-gradient(90deg, transparent 24px, #1e2022 24px, #1e2022 36px, transparent 36px),
+                linear-gradient(transparent 24px, #1e2022 24px, #1e2022 36px, transparent 36px);
+            background-size: 48px 48px;
+            background-position: 8px 8px;
+        }
+        .service-card[hidden], .category-group[hidden] { display: none; }
+        .field:focus { border-color: #c5b4a3; box-shadow: 0 0 0 3px rgba(197, 180, 163, 0.13); outline: none; }
+        .motion-ready .reveal { opacity: 0; transform: translateY(24px) scale(.985); }
+        .motion-ready .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+            transition-delay: var(--reveal-delay, 0ms);
+        }
+        .motion-ready .service-card.reveal.is-visible:hover { transform: translateY(-6px) scale(1.005); }
+        .inquire-service:active, #submit-inquiry:active, .filter-btn:active { transform: scale(.97); }
+        .modal-visible { opacity: 1; pointer-events: auto; }
+        .modal-visible .modal-panel { transform: translateY(0) scale(1); }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden font-sans text-cove-cream antialiased selection:bg-cove-sage selection:text-zinc-950">
+    <div class="grain pointer-events-none fixed inset-0 z-0 opacity-[0.05]" aria-hidden="true"></div>
+    <a href="#main-content" class="fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-cove-cream px-4 py-3 font-bold text-zinc-950 transition focus:translate-y-0">Skip to content</a>
+
+    <header class="sticky top-0 z-40 border-b border-white/[0.08] bg-cove-charcoal/80 backdrop-blur-2xl">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8 lg:px-12" aria-label="Rate card navigation">
+            <a href="/" class="group flex min-w-0 items-center gap-3" aria-label="The Studio Cove — return to main portfolio">
+                <img src="the-studio-cove-logo-john-jacob-tamon.png" alt="" class="h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10">
+                <span class="truncate font-display text-sm font-semibold tracking-tight text-cove-cream sm:text-base">The Studio Cove</span>
+            </a>
+            <div class="flex items-center gap-3 sm:gap-5">
+                <a href="/" class="hidden text-sm font-bold text-zinc-300 transition hover:text-cove-sage sm:inline-flex">← Back to Main Portfolio</a>
+                <a href="#inquiry" class="rounded-full bg-cove-sage px-4 py-2.5 font-display text-xs font-bold text-zinc-950 transition hover:scale-[1.02] hover:bg-cove-cream focus:outline-none focus:ring-2 focus:ring-cove-cream focus:ring-offset-2 focus:ring-offset-zinc-900">Book / Inquire</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content" class="relative z-10">
+        <section class="mx-auto max-w-7xl px-5 pb-16 pt-20 text-center sm:px-8 sm:pb-24 sm:pt-28 lg:px-12 lg:pb-28 lg:pt-32">
+            <div class="mx-auto max-w-5xl">
+                <div>
+                    <p class="mb-7 inline-flex items-center gap-2 rounded-full border border-cove-sage/25 bg-cove-sage/[0.08] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-cove-mist backdrop-blur-xl sm:text-xs">
+                        <span class="h-2 w-2 rounded-full bg-cove-sage shadow-[0_0_0_4px_rgba(197,180,163,0.12)]"></span>
+                        Available for Campus Orgs, Events &amp; Local MSMEs
+                    </p>
+                    <h1 class="font-display text-5xl font-bold leading-[0.94] tracking-[-0.065em] text-cove-cream sm:text-7xl lg:text-8xl">Creative services.<br><span class="bg-gradient-to-r from-cove-mist via-cove-cream to-cove-sage bg-clip-text text-transparent">Clearly priced.</span></h1>
+                    <p class="mx-auto mt-7 max-w-2xl text-base leading-7 text-zinc-400 sm:text-xl sm:leading-8">Student and local org-friendly graphics and video editing, priced in Philippine Peso.</p>
+                </div>
+                <aside class="apple-panel mx-auto mt-10 grid max-w-3xl gap-5 rounded-[1.75rem] p-5 text-left sm:grid-cols-3 sm:p-6" aria-label="Rate card overview">
+                    <div><p class="text-xs font-semibold text-zinc-500">Starting at</p><p class="mt-1 text-xl font-semibold text-white">₱150</p></div>
+                    <div><p class="text-xs font-semibold text-zinc-500">Services</p><p class="mt-1 text-xl font-semibold text-white">4 graphics · 4 video</p></div>
+                    <div><p class="text-xs font-semibold text-zinc-500">Standard revisions</p><p class="mt-1 text-xl font-semibold text-white">2 rounds</p></div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="services" class="mx-auto max-w-7xl scroll-mt-24 px-5 pb-20 sm:px-8 lg:px-12 lg:pb-28" aria-labelledby="services-title">
+            <div class="sticky top-[65px] z-20 -mx-2 flex flex-col justify-between gap-5 rounded-2xl border border-white/[0.08] bg-black/75 px-4 py-4 shadow-2xl backdrop-blur-2xl sm:flex-row sm:items-center sm:px-5">
+                <div>
+                    <p class="font-display text-xs font-semibold text-zinc-500">Rate directory</p>
+                    <h2 id="services-title" class="mt-1 font-display text-xl font-semibold tracking-tight sm:text-2xl">Choose what you need.</h2>
+                </div>
+                <div class="filter-shell inline-flex w-full border border-white/10 p-1 sm:w-fit" role="group" aria-label="Filter services">
+                    <button type="button" class="filter-btn flex-1 whitespace-nowrap bg-cove-sage px-3 py-2 text-sm font-semibold text-zinc-950 transition sm:px-4" data-filter="all" aria-pressed="true">All · 8</button>
+                    <button type="button" class="filter-btn flex-1 whitespace-nowrap px-3 py-2 text-sm font-semibold text-zinc-400 transition hover:text-cove-cream sm:px-4" data-filter="graphics" aria-pressed="false">Graphics · 4</button>
+                    <button type="button" class="filter-btn flex-1 whitespace-nowrap px-3 py-2 text-sm font-semibold text-zinc-400 transition hover:text-cove-cream sm:px-4" data-filter="video" aria-pressed="false">Video · 4</button>
+                </div>
+            </div>
+
+            <div id="service-directory" class="service-directory show-all mt-10 space-y-14 lg:space-y-0">
+                <div class="category-group" data-category-group="graphics">
+                    <div class="mb-6 flex items-center gap-4">
+                        <span class="font-display text-xs font-black tracking-[0.18em] text-cove-sage">01</span>
+                        <h3 class="font-display text-xl font-black tracking-tight sm:text-2xl">Graphic Design &amp; Visuals</h3>
+                        <span class="h-px flex-1 bg-white/10"></span>
+                    </div>
+                    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                        <article class="service-card group flex min-h-[360px] flex-col rounded-xl border border-white/10 bg-white/[0.045] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-cove-sage/45 hover:bg-white/[0.07]" data-category="graphics">
+                            <div class="flex items-start justify-between gap-4"><h4 class="font-display text-lg font-black leading-tight">Pubmats / Social Posters</h4><p class="shrink-0 text-base font-extrabold text-cove-sage">₱150–₱300</p></div>
+                            <p class="mt-4 text-sm leading-6 text-zinc-400">Single promotional, announcement, or event visual optimized for social feeds.</p>
+                            <dl class="mt-6 space-y-4 text-sm"><div><dt class="font-bold text-zinc-200">Includes</dt><dd class="mt-1 text-zinc-400">1 final layout, platform sizing, JPG/PNG export</dd></div><div><dt class="font-bold text-zinc-200">Turnaround</dt><dd class="mt-1 text-zinc-400">1–2 working days</dd></div></dl>
+                            <button type="button" class="inquire-service mt-auto inline-flex w-full items-center justify-between text-left text-sm font-extrabold transition" data-service="Pubmats / Social Posters">Inquire Now <span aria-hidden="true">↘</span></button>
+                        </article>
+                        <article class="service-card group flex min-h-[360px] flex-col rounded-xl border border-white/10 bg-white/[0.045] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-cove-sage/45 hover:bg-white/[0.07]" data-category="graphics">
+                            <div class="flex items-start justify-between gap-4"><h4 class="font-display text-lg font-black leading-tight">Batch / Carousel Pubmats</h4><p class="shrink-0 text-base font-extrabold text-cove-sage">₱400–₱800</p></div>
+                            <p class="mt-4 text-sm leading-6 text-zinc-400">A coordinated set of campaign visuals or a swipeable carousel with consistent styling.</p>
+                            <dl class="mt-6 space-y-4 text-sm"><div><dt class="font-bold text-zinc-200">Includes</dt><dd class="mt-1 text-zinc-400">3–6 layouts/slides, visual system, JPG/PNG exports</dd></div><div><dt class="font-bold text-zinc-200">Turnaround</dt><dd class="mt-1 text-zinc-400">2–4 working days</dd></div></dl>
+                            <button type="button" class="inquire-service mt-auto inline-flex w-full items-center justify-between text-left text-sm font-extrabold transition" data-service="Batch / Carousel Pubmats">Inquire Now <span aria-hidden="true">↘</span></button>
+                        </article>
+                        <article class="service-card group flex min-h-[360px] flex-col rounded-xl border border-white/10 bg-white/[0.045] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-cove-sage/45 hover:bg-white/[0.07]" data-category="graphics">
+                            <div class="flex items-start justify-between gap-4"><h4 class="font-display text-lg font-black leading-tight">Key Visual / Hero Posters</h4><p class="shrink-0 text-base font-extrabold text-cove-sage">₱500–₱1,000</p></div>
+                            <p class="mt-4 text-sm leading-6 text-zinc-400">A high-impact master artwork for major events, launches, and campaign rollouts.</p>
+                            <dl class="mt-6 space-y-4 text-sm"><div><dt class="font-bold text-zinc-200">Includes</dt><dd class="mt-1 text-zinc-400">1 master visual, 2 social adaptations, web/print exports</dd></div><div><dt class="font-bold text-zinc-200">Turnaround</dt><dd class="mt-1 text-zinc-400">3–5 working days</dd></div></dl>
+                            <button type="button" class="inquire-service mt-auto inline-flex w-full items-center justify-between text-left text-sm font-extrabold transition" data-service="Key Visual / Hero Posters">Inquire Now <span aria-hidden="true">↘</span></button>
+                        </article>
+                        <article class="service-card group flex min-h-[360px] flex-col rounded-xl border border-white/10 bg-white/[0.045] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-cove-sage/45 hover:bg-white/[0.07]" data-category="graphics">
+                            <div class="flex items-start justify-between gap-4"><h4 class="font-display text-lg font-black leading-tight">Logos &amp; Mini Brand Kits</h4><p class="shrink-0 text-base font-extrabold text-cove-sage">₱350–₱2,500</p></div>
+                            <p class="mt-4 text-sm leading-6 text-zinc-400">From clean event marks to a practical starter identity for growing local brands.</p>
+                            <dl class="mt-6 space-y-4 text-sm"><div><dt class="font-bold text-zinc-200">Includes</dt><dd class="mt-1 text-zinc-400">Concept options, logo files, palette &amp; type guide</dd></div><div><dt class="font-bold text-zinc-200">Turnaround</dt><dd class="mt-1 text-zinc-400">4–10 working days</dd></div></dl>
+                            <button type="button" class="inquire-service mt-auto inline-flex w-full items-center justify-between text-left text-sm font-extrabold transition" data-service="Logos & Mini Brand Kits">Inquire Now <span aria-hidden="true">↘</span></button>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="category-group" data-category-group="video">
+                    <div class="mb-6 flex items-center gap-4"><span class="font-display text-xs font-black tracking-[0.18em] text-cove-sage">02</span><h3 class="font-display text-xl font-black tracking-tight sm:text-2xl">Video Editing &amp; Motion</h3><span class="h-px flex-1 bg-white/10"></span></div>
+                    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                        <article class="service-card group flex min-h-[360px] flex-col rounded-xl border border-white/10 bg-white/[0.045] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-cove-sage/45 hover:bg-white/[0.07]" data-category="video">
+                            <div class="flex items-start justify-between gap-4"><h4 class="font-display text-lg font-black leading-tight">TikTok / Reels Short-Form</h4><p class="shrink-0 text-base font-extrabold text-cove-sage">₱250–₱500</p></div>
+                            <p class="mt-4 text-sm leading-6 text-zinc-400">Fast-paced vertical edits for social campaigns, promos, recaps, or creator content.</p>
+                            <dl class="mt-6 space-y-4 text-sm"><div><dt class="font-bold text-zinc-200">Includes</dt><dd class="mt-1 text-zinc-400">Up to 60 seconds, captions, music &amp; basic effects</dd></div><div><dt class="font-bold text-zinc-200">Turnaround</dt><dd class="mt-1 text-zinc-400">1–3 working days</dd></div></dl>
+                            <button type="button" class="inquire-service mt-auto inline-flex w-full items-center justify-between text-left text-sm font-extrabold transition" data-service="TikTok / Reels Short-Form">Inquire Now <span aria-hidden="true">↘</span></button>
+                        </article>
+                        <article class="service-card group flex min-h-[360px] flex-col rounded-xl border border-white/10 bg-white/[0.045] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-cove-sage/45 hover:bg-white/[0.07]" data-category="video">
+                            <div class="flex items-start justify-between gap-4"><h4 class="font-display text-lg font-black leading-tight">Class Projects &amp; Skits</h4><p class="shrink-0 text-base font-extrabold text-cove-sage">₱600–₱1,500</p></div>
+                            <p class="mt-4 text-sm leading-6 text-zinc-400">A complete narrative edit for academic films, presentations, skits, and advocacy videos.</p>
+                            <dl class="mt-6 space-y-4 text-sm"><div><dt class="font-bold text-zinc-200">Includes</dt><dd class="mt-1 text-zinc-400">Up to 10 minutes, titles, music &amp; color polish</dd></div><div><dt class="font-bold text-zinc-200">Turnaround</dt><dd class="mt-1 text-zinc-400">4–7 working days</dd></div></dl>
+                            <button type="button" class="inquire-service mt-auto inline-flex w-full items-center justify-between text-left text-sm font-extrabold transition" data-service="Class Projects & Skits">Inquire Now <span aria-hidden="true">↘</span></button>
+                        </article>
+                        <article class="service-card group flex min-h-[360px] flex-col rounded-xl border border-white/10 bg-white/[0.045] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-cove-sage/45 hover:bg-white/[0.07]" data-category="video">
+                            <div class="flex items-start justify-between gap-4"><h4 class="font-display text-lg font-black leading-tight">Event Highlights / SDE Recaps</h4><p class="shrink-0 text-base font-extrabold text-cove-sage">₱1,200–₱2,500</p></div>
+                            <p class="mt-4 text-sm leading-6 text-zinc-400">An energetic highlight film shaped from your organized event footage and audio.</p>
+                            <dl class="mt-6 space-y-4 text-sm"><div><dt class="font-bold text-zinc-200">Includes</dt><dd class="mt-1 text-zinc-400">1–4 minute edit, music sync, titles &amp; color polish</dd></div><div><dt class="font-bold text-zinc-200">Turnaround</dt><dd class="mt-1 text-zinc-400">3–7 working days</dd></div></dl>
+                            <button type="button" class="inquire-service mt-auto inline-flex w-full items-center justify-between text-left text-sm font-extrabold transition" data-service="Event Highlights / SDE Recaps">Inquire Now <span aria-hidden="true">↘</span></button>
+                        </article>
+                        <article class="service-card group flex min-h-[360px] flex-col rounded-xl border border-white/10 bg-white/[0.045] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-cove-sage/45 hover:bg-white/[0.07]" data-category="video">
+                            <div class="flex items-start justify-between gap-4"><h4 class="font-display text-lg font-black leading-tight">Event OBB Intros &amp; LED Wall Motion Loops</h4><p class="shrink-0 text-base font-extrabold text-cove-sage">₱500–₱1,800</p></div>
+                            <p class="mt-4 text-sm leading-6 text-zinc-400">Branded opening sequences and seamless motion assets built for event screens.</p>
+                            <dl class="mt-6 space-y-4 text-sm"><div><dt class="font-bold text-zinc-200">Includes</dt><dd class="mt-1 text-zinc-400">5–30 second motion, music/SFX, event-ready export</dd></div><div><dt class="font-bold text-zinc-200">Turnaround</dt><dd class="mt-1 text-zinc-400">3–6 working days</dd></div></dl>
+                            <button type="button" class="inquire-service mt-auto inline-flex w-full items-center justify-between text-left text-sm font-extrabold transition" data-service="Event OBB Intros & LED Wall Motion Loops">Inquire Now <span aria-hidden="true">↘</span></button>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="inquiry" class="scroll-mt-24 border-y border-white/10 bg-black/15">
+            <div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[minmax(280px,0.7fr)_minmax(0,1.3fr)] lg:gap-16 lg:px-12 lg:py-28">
+                <div>
+                    <p class="font-display text-xs font-extrabold uppercase tracking-[0.2em] text-cove-sage">Start a project</p>
+                    <h2 class="mt-3 font-display text-3xl font-black tracking-[-0.03em] sm:text-4xl">Tell me what you’re making.</h2>
+                    <p class="mt-5 max-w-md leading-7 text-zinc-400">Complete the details and send your inquiry directly to The Studio Cove without opening or leaving for an email app.</p>
+                    <ol class="mt-8 space-y-5 text-sm text-zinc-300">
+                        <li class="flex gap-4"><span class="font-display font-black text-cove-sage">01</span><span>Choose a service and share the scope.</span></li>
+                        <li class="flex gap-4"><span class="font-display font-black text-cove-sage">02</span><span>Receive a final quote and availability check.</span></li>
+                        <li class="flex gap-4"><span class="font-display font-black text-cove-sage">03</span><span>Confirm with the 50% downpayment and files.</span></li>
+                    </ol>
+                </div>
+                <form id="inquiry-form" class="apple-panel rounded-2xl border border-white/10 p-5 shadow-cove sm:p-8" novalidate>
+                    <div class="absolute -left-[9999px]" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+                    <div class="grid gap-5 sm:grid-cols-2">
+                        <div><label for="full-name" class="mb-2 block text-sm font-bold text-zinc-200">Full Name <span class="text-cove-sage">*</span></label><input id="full-name" name="fullName" type="text" autocomplete="name" required class="field w-full rounded-md border border-white/10 bg-white/[0.055] px-4 py-3 text-cove-cream placeholder:text-zinc-600" placeholder="Your full name"></div>
+                        <div><label for="email" class="mb-2 block text-sm font-bold text-zinc-200">Email Address <span class="text-cove-sage">*</span></label><input id="email" name="email" type="email" autocomplete="email" required class="field w-full rounded-md border border-white/10 bg-white/[0.055] px-4 py-3 text-cove-cream placeholder:text-zinc-600" placeholder="you@example.com"></div>
+                        <div><label for="contact" class="mb-2 block text-sm font-bold text-zinc-200">Contact No. / Messenger URL <span class="text-cove-sage">*</span></label><input id="contact" name="contact" type="text" autocomplete="tel" required class="field w-full rounded-md border border-white/10 bg-white/[0.055] px-4 py-3 text-cove-cream placeholder:text-zinc-600" placeholder="09XX… or m.me/username"></div>
+                        <div>
+                            <label for="service" class="mb-2 block text-sm font-bold text-zinc-200">Service Type <span class="text-cove-sage">*</span></label>
+                            <select id="service" name="service" required class="field w-full rounded-md border border-white/10 bg-zinc-800 px-4 py-3 text-cove-cream">
+                                <option value="">Select a service</option>
+                                <optgroup label="Graphic Design &amp; Visuals"><option>Pubmats / Social Posters</option><option>Batch / Carousel Pubmats</option><option>Key Visual / Hero Posters</option><option>Logos &amp; Mini Brand Kits</option></optgroup>
+                                <optgroup label="Video Editing &amp; Motion"><option>TikTok / Reels Short-Form</option><option>Class Projects &amp; Skits</option><option>Event Highlights / SDE Recaps</option><option>Event OBB Intros &amp; LED Wall Motion Loops</option></optgroup>
+                                <option>Other / Custom Request</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2"><label for="deadline" class="mb-2 block text-sm font-bold text-zinc-200">Target Deadline / Event Date <span class="text-cove-sage">*</span></label><input id="deadline" name="deadline" type="date" required class="field w-full rounded-md border border-white/10 bg-white/[0.055] px-4 py-3 text-cove-cream [color-scheme:dark]"></div>
+                        <div class="sm:col-span-2"><label for="brief" class="mb-2 block text-sm font-bold text-zinc-200">Project Brief &amp; Deliverable Details <span class="text-cove-sage">*</span></label><textarea id="brief" name="brief" rows="6" required class="field w-full resize-y rounded-md border border-white/10 bg-white/[0.055] px-4 py-3 text-cove-cream placeholder:text-zinc-600" placeholder="What is the project for? Include size, quantity, duration, platform, style, and any must-have content."></textarea></div>
+                        <div class="sm:col-span-2">
+                            <label for="inspiration-files" class="mb-2 block text-sm font-bold text-zinc-200">Inspiration Photos / Videos <span class="font-normal text-zinc-500">(Optional)</span></label>
+                            <label for="inspiration-files" class="flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-white/20 bg-white/[0.035] px-5 py-7 text-center transition hover:border-cove-sage/50 hover:bg-cove-sage/[0.06]">
+                                <span class="font-display text-sm font-extrabold text-cove-cream">Choose inspiration files</span>
+                                <span id="file-summary" class="mt-1 text-xs leading-5 text-zinc-500">Photos or videos · optional · multiple files accepted</span>
+                            </label>
+                            <input id="inspiration-files" name="inspirationFiles" type="file" accept="image/*,video/*" multiple class="sr-only">
+                            <p class="mt-2 text-xs leading-5 text-zinc-500">Up to 10 MB total. Selected files are stored in a private Studio Cove Drive folder. Use the link below for larger videos.</p>
+                        </div>
+                        <div class="sm:col-span-2"><label for="drive-link" class="mb-2 block text-sm font-bold text-zinc-200">Google Drive Reference Link <span class="font-normal text-zinc-500">(Optional)</span></label><input id="drive-link" name="driveLink" type="url" inputmode="url" class="field w-full rounded-md border border-white/10 bg-white/[0.055] px-4 py-3 text-cove-cream placeholder:text-zinc-600" placeholder="https://drive.google.com/…"></div>
+                    </div>
+                    <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
+                        <button id="submit-inquiry" type="submit" class="inline-flex shrink-0 items-center justify-center gap-3 rounded-md bg-cove-sage px-6 py-3.5 font-display text-sm font-black uppercase tracking-[0.1em] text-zinc-950 transition hover:-translate-y-0.5 hover:bg-cove-cream focus:outline-none focus:ring-2 focus:ring-cove-cream focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:cursor-wait disabled:opacity-60">Send Inquiry <span aria-hidden="true">↗</span></button>
+                    </div>
+                    <p id="form-error" class="mt-4 hidden rounded-md border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200" role="alert">Please complete all required fields with valid information.</p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="relative z-10 border-t border-white/10"><div class="mx-auto max-w-7xl px-5 py-8 pb-24 text-center text-sm text-zinc-500 sm:px-8 sm:pb-8 lg:px-12"><p>© <span id="year"></span> The Studio Cove. Built by John Jacob Tamon.</p></div></footer>
+    <a href="#inquiry" class="fixed bottom-4 left-4 right-4 z-30 flex items-center justify-center rounded-full bg-cove-sage px-5 py-3.5 font-display text-sm font-bold text-zinc-950 shadow-2xl transition hover:bg-cove-cream sm:hidden">Book / Inquire</a>
+
+    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-5 opacity-0 pointer-events-none transition duration-200" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+        <div class="modal-panel w-full max-w-lg translate-y-4 scale-[0.98] rounded-2xl border border-white/10 bg-zinc-900 p-7 shadow-cove transition duration-200 sm:p-9">
+            <div class="flex items-start justify-between gap-5"><div class="flex h-12 w-12 items-center justify-center rounded-full bg-cove-sage font-display text-xl font-black text-zinc-950" aria-hidden="true">✓</div><button id="close-modal" type="button" class="rounded-md border border-white/10 px-3 py-2 text-sm font-bold text-zinc-400 transition hover:bg-white/5 hover:text-cove-cream" aria-label="Close confirmation dialog">Close</button></div>
+            <p class="mt-7 font-display text-xs font-extrabold uppercase tracking-[0.2em] text-cove-sage">Inquiry submitted</p><h2 id="modal-title" class="mt-2 font-display text-2xl font-black sm:text-3xl">Thank you for reaching out.</h2><p id="modal-description" class="mt-4 leading-7 text-zinc-400">Your inquiry was sent to The Studio Cove. You will stay on this page while your request is reviewed.</p>
+            <div class="mt-6 rounded-xl border border-white/10 bg-white/[0.04] p-5"><p class="font-bold text-cove-cream">Payment reminder</p><p class="mt-2 text-sm leading-6 text-zinc-400">Pay only after receiving and approving your final quote. Use the payment page only when you are ready to submit your GCash proof.</p></div>
+            <a href="/payment" class="mt-5 inline-flex w-full items-center justify-center rounded-md bg-cove-sage px-5 py-3.5 font-display text-sm font-black uppercase tracking-[0.1em] text-zinc-950 transition hover:bg-cove-cream">Go to Payment When Ready →</a>
+        </div>
+    </div>
+    <div id="copy-toast" class="fixed bottom-24 left-1/2 z-[60] -translate-x-1/2 translate-y-4 rounded-full bg-cove-cream px-4 py-2.5 text-sm font-extrabold text-zinc-950 opacity-0 shadow-xl transition sm:bottom-8" role="status" aria-live="polite"></div>
+
+    <script>
+        (() => {
+            // Add the new standalone Google Apps Script /exec URL after deployment.
+            const BOOKING_API_URL = "";
+            const MAX_REFERENCE_BYTES = 10 * 1024 * 1024;
+            const filterButtons = document.querySelectorAll(".filter-btn");
+            const serviceCards = document.querySelectorAll(".service-card");
+            const categoryGroups = document.querySelectorAll(".category-group");
+            const serviceDirectory = document.getElementById("service-directory");
+            const serviceSelect = document.getElementById("service");
+            const inquirySection = document.getElementById("inquiry");
+            const inquiryForm = document.getElementById("inquiry-form");
+            const formError = document.getElementById("form-error");
+            const submitInquiryButton = document.getElementById("submit-inquiry");
+            const inspirationFiles = document.getElementById("inspiration-files");
+            const fileSummary = document.getElementById("file-summary");
+            const modal = document.getElementById("success-modal");
+            const closeModalButton = document.getElementById("close-modal");
+            const copyToast = document.getElementById("copy-toast");
+            let lastFocusedElement = null;
+            let toastTimer;
+
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (!reducedMotion && "IntersectionObserver" in window) {
+                document.documentElement.classList.add("motion-ready");
+                const revealItems = document.querySelectorAll("main > section, .apple-panel, .category-group, .service-card");
+                revealItems.forEach((item, index) => {
+                    item.classList.add("reveal");
+                    item.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 70}ms`);
+                });
+                const revealObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        entry.target.classList.add("is-visible");
+                        revealObserver.unobserve(entry.target);
+                    });
+                }, { threshold:0.12, rootMargin:"0px 0px -40px" });
+                revealItems.forEach(item => revealObserver.observe(item));
+            }
+
+            inspirationFiles.addEventListener("change", () => {
+                const files = Array.from(inspirationFiles.files);
+                if (!files.length) {
+                    fileSummary.textContent = "Photos or videos · optional · multiple files accepted";
+                    return;
+                }
+                const names = files.map((file) => file.name);
+                fileSummary.textContent = names.length === 1 ? names[0] : `${names.length} files selected: ${names.join(", ")}`;
+            });
+
+            filterButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const filter = button.dataset.filter;
+                    serviceDirectory.classList.toggle("show-all", filter === "all");
+                    filterButtons.forEach((item) => {
+                        const active = item === button;
+                        item.setAttribute("aria-pressed", String(active));
+                        item.classList.toggle("bg-cove-sage", active);
+                        item.classList.toggle("text-zinc-950", active);
+                        item.classList.toggle("text-zinc-400", !active);
+                    });
+                    serviceCards.forEach((card) => { card.hidden = filter !== "all" && card.dataset.category !== filter; });
+                    categoryGroups.forEach((group) => { group.hidden = filter !== "all" && group.dataset.categoryGroup !== filter; });
+                });
+            });
+
+            document.querySelectorAll(".inquire-service").forEach((button) => {
+                button.addEventListener("click", () => {
+                    serviceSelect.value = button.dataset.service;
+                    inquirySection.scrollIntoView({ behavior: "smooth", block: "start" });
+                    window.setTimeout(() => serviceSelect.focus({ preventScroll: true }), 650);
+                });
+            });
+
+            const showToast = (message) => {
+                window.clearTimeout(toastTimer);
+                copyToast.textContent = message;
+                copyToast.classList.remove("opacity-0", "translate-y-4");
+                toastTimer = window.setTimeout(() => copyToast.classList.add("opacity-0", "translate-y-4"), 2200);
+            };
+
+            const copyText = async (value) => {
+                if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(value); return; }
+                const helper = document.createElement("textarea");
+                helper.value = value;
+                helper.setAttribute("readonly", "");
+                helper.style.position = "fixed";
+                helper.style.opacity = "0";
+                document.body.appendChild(helper);
+                helper.select();
+                document.execCommand("copy");
+                helper.remove();
+            };
+
+            document.querySelectorAll(".copy-number").forEach((button) => {
+                button.addEventListener("click", async () => {
+                    try { await copyText(button.dataset.number); showToast(`${button.dataset.provider} number copied`); }
+                    catch (error) { showToast("Could not copy — please select the number manually"); }
+                });
+            });
+
+            const openModal = () => {
+                lastFocusedElement = document.activeElement;
+                modal.classList.add("modal-visible");
+                document.body.classList.add("overflow-hidden");
+                closeModalButton.focus();
+            };
+            const closeModal = () => {
+                modal.classList.remove("modal-visible");
+                document.body.classList.remove("overflow-hidden");
+                if (lastFocusedElement) lastFocusedElement.focus();
+            };
+            closeModalButton.addEventListener("click", closeModal);
+            modal.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+            document.addEventListener("keydown", (event) => { if (event.key === "Escape" && modal.classList.contains("modal-visible")) closeModal(); });
+
+            const fileToBase64 = (file) => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(String(reader.result).split(",")[1]);
+                reader.onerror = () => reject(new Error(`Could not read ${file.name}.`));
+                reader.readAsDataURL(file);
+            });
+
+            inquiryForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                if (!inquiryForm.checkValidity()) {
+                    formError.textContent = "Please complete all required fields with valid information.";
+                    formError.classList.remove("hidden");
+                    inquiryForm.reportValidity();
+                    return;
+                }
+                formError.classList.add("hidden");
+                if (!BOOKING_API_URL) {
+                    formError.textContent = "Online inquiries are temporarily unavailable while the secure form is being updated. Please try again soon.";
+                    formError.classList.remove("hidden");
+                    return;
+                }
+                const formData = new FormData(inquiryForm);
+                const selectedFiles = Array.from(inspirationFiles.files);
+                const totalFileBytes = selectedFiles.reduce((total, file) => total + file.size, 0);
+
+                if (totalFileBytes > MAX_REFERENCE_BYTES) {
+                    formError.textContent = "Reference files must be 10 MB or less in total. Use the Google Drive link for larger videos.";
+                    formError.classList.remove("hidden");
+                    return;
+                }
+
+                submitInquiryButton.disabled = true;
+                submitInquiryButton.textContent = selectedFiles.length ? "Uploading & Sending…" : "Sending…";
+
+                try {
+                    const encodedFiles = await Promise.all(selectedFiles.map(async (file) => ({
+                        name: file.name,
+                        type: file.type,
+                        data: await fileToBase64(file)
+                    })));
+                    const payload = {
+                        type: "booking",
+                        fullName: formData.get("fullName").trim(),
+                        email: formData.get("email").trim(),
+                        contact: formData.get("contact").trim(),
+                        service: formData.get("service"),
+                        deadline: formData.get("deadline"),
+                        brief: formData.get("brief").trim(),
+                        driveLink: formData.get("driveLink").trim(),
+                        website: formData.get("website"),
+                        files: encodedFiles
+                    };
+                    const requestBody = new URLSearchParams({ payload: JSON.stringify(payload) });
+
+                    await fetch(BOOKING_API_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        body: requestBody
+                    });
+
+                    sessionStorage.setItem("coveBooking", JSON.stringify({
+                        fullName: payload.fullName,
+                        email: payload.email,
+                        contact: payload.contact
+                    }));
+                    inquiryForm.reset();
+                    fileSummary.textContent = "Photos or videos · optional · multiple files accepted";
+                    openModal();
+                } catch (error) {
+                    formError.textContent = "The inquiry could not be sent. Check your connection and try again.";
+                    formError.classList.remove("hidden");
+                } finally {
+                    submitInquiryButton.disabled = false;
+                    submitInquiryButton.innerHTML = 'Send Inquiry <span aria-hidden="true">↗</span>';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

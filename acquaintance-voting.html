@@ -521,7 +521,7 @@
         <section class="results-grid" id="results" aria-live="polite" aria-busy="true">
             <div class="state-panel">
                 <h2>Loading results…</h2>
-                <p>Getting the latest totals from the official response sheet.</p>
+                <p>The live spreadsheet connection has been disabled.</p>
             </div>
         </section>
 
@@ -543,8 +543,8 @@
     </main>
 
     <script>
-        // After deploying google-apps-script.gs, paste its /exec Web App URL below.
-        const RESULTS_API_URL = "https://script.google.com/macros/s/AKfycbyng-ftFOT2OsuEIpKf9MAMeqkXA8W4ngosFOmEks7NLyz4kT1vCEHsPVqOGMO6ZtnE/exec";
+        // Disabled so this page does not connect to a spreadsheet-backed endpoint.
+        const RESULTS_API_URL = "";
         const AUTO_REFRESH_MS = 30_000;
 
         const resultsElement = document.querySelector("#results");
@@ -614,11 +614,14 @@
         }
 
         async function loadResults() {
-            if (RESULTS_API_URL.startsWith("PASTE_")) {
+            if (!RESULTS_API_URL) {
                 renderState(
-                    "Connect the Google Sheet",
-                    "Deploy the included Google Apps Script, then paste its Web App URL into RESULTS_API_URL in this file."
+                    "Live results disabled",
+                    "This page is no longer connected to a spreadsheet or voting-results service."
                 );
+                liveBadge.textContent = "Connection disabled";
+                responseCountElement.textContent = "—";
+                updatedTimeElement.textContent = "—";
                 resultsElement.setAttribute("aria-busy", "false");
                 return;
             }

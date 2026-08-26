@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1e2022">
+    <title>Payment &amp; Verification | The Studio Cove</title>
+    <meta name="description" content="GCash payment guide and proof-of-payment submission for confirmed The Studio Cove bookings.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Montserrat:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { cove: { cream: "#f4eee8", sage: "#c5b4a3", mist: "#d9cec3", charcoal: "#1e2022" } },
+                    fontFamily: { sans: ["DM Sans", "Segoe UI", "sans-serif"], display: ["Montserrat", "DM Sans", "sans-serif"] }
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            background:
+                radial-gradient(circle at 50% -10%, rgba(197, 180, 163, 0.18), transparent 34rem),
+                radial-gradient(circle at 90% 35%, rgba(244, 238, 232, 0.07), transparent 30rem),
+                linear-gradient(145deg, #1e2022 0%, #17191b 62%, #101112 100%);
+        }
+        .panel {
+            border: 1px solid rgba(255,255,255,.1);
+            background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 24px 70px rgba(0,0,0,.24);
+            backdrop-filter: blur(24px);
+        }
+        .field:focus { border-color:#c5b4a3; box-shadow:0 0 0 3px rgba(197,180,163,.13); outline:none; }
+        .wallet-card[aria-pressed="true"] { border-color:rgba(197,180,163,.75); background:rgba(197,180,163,.1); }
+        .qr-preview { aspect-ratio:1; background:#fff; }
+        .qr-preview img { left:50%; top:-43%; width:155%; max-width:none; transform:translateX(-50%); }
+        .motion-ready .reveal { opacity:0; transform:translateY(24px) scale(.985); }
+        .motion-ready .reveal.is-visible {
+            opacity:1;
+            transform:translateY(0) scale(1);
+            transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+            transition-delay:var(--reveal-delay, 0ms);
+        }
+        .wallet-card { transition:transform .35s cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow .35s ease; }
+        .wallet-card:hover { transform:translateY(-5px); box-shadow:0 28px 70px rgba(0,0,0,.28); }
+        .motion-ready .wallet-card.reveal.is-visible:hover { transform:translateY(-5px) scale(1.005); box-shadow:0 28px 70px rgba(0,0,0,.28); }
+        #save-gcash-qr:active, #open-gcash:active, #submit-proof:active { transform:scale(.97); }
+        .modal-visible { opacity:1; pointer-events:auto; }
+        .modal-visible .modal-panel { transform:translateY(0) scale(1); }
+        @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; } }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden font-sans text-cove-cream antialiased">
+    <a href="#main-content" class="fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-cove-cream px-4 py-3 font-bold text-zinc-950 transition focus:translate-y-0">Skip to content</a>
+
+    <header class="sticky top-0 z-40 border-b border-white/[0.08] bg-cove-charcoal/80 backdrop-blur-2xl">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8" aria-label="Payment page navigation">
+            <a href="/" class="flex min-w-0 items-center gap-3" aria-label="The Studio Cove main portfolio">
+                <img src="the-studio-cove-logo-john-jacob-tamon.png" alt="" class="h-10 w-10 object-contain">
+                <span class="truncate font-display text-sm font-bold sm:text-base">The Studio Cove</span>
+            </a>
+            <a href="/rates" class="rounded-full border border-white/10 bg-white/[0.055] px-4 py-2.5 text-xs font-bold text-zinc-200 transition hover:border-cove-sage/40 hover:text-cove-sage">← Back to Rate Card</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="mx-auto max-w-4xl px-5 pb-14 pt-16 text-center sm:px-8 sm:pb-20 sm:pt-24">
+            <p class="inline-flex items-center gap-2 rounded-full border border-cove-sage/25 bg-cove-sage/[0.08] px-4 py-2 text-xs font-bold uppercase tracking-[.12em] text-cove-mist"><span class="h-2 w-2 rounded-full bg-cove-sage"></span>Manual payment verification</p>
+            <h1 class="mt-7 font-display text-4xl font-black leading-[.98] tracking-[-.045em] sm:text-6xl">Payment &amp;<br><span class="text-cove-sage">proof of payment.</span></h1>
+            <p class="mx-auto mt-6 max-w-2xl leading-7 text-zinc-400 sm:text-lg">Save the official account QR, open GCash, and submit your transaction screenshot for verification.</p>
+            <div class="mx-auto mt-8 max-w-2xl rounded-2xl border border-amber-300/25 bg-amber-300/[0.07] px-5 py-4 text-left text-sm leading-6 text-amber-100"><strong>Pay only after your final quote is confirmed.</strong> Submitting an inquiry does not require immediate payment.</div>
+        </section>
+
+        <section id="accounts" class="mx-auto max-w-6xl scroll-mt-24 px-5 pb-20 sm:px-8" aria-labelledby="choose-wallet-title">
+            <div class="panel rounded-[2rem] p-5 sm:p-8">
+                <div class="flex items-center gap-4"><span class="font-display text-xs font-black text-cove-sage">01</span><h2 id="choose-wallet-title" class="font-display text-xl font-black">Pay through GCash</h2><span class="h-px flex-1 bg-white/10"></span></div>
+                <article class="wallet-card mx-auto mt-6 max-w-md rounded-[1.75rem] border border-cove-sage/25 bg-white/[0.035] p-4 sm:p-5" data-provider="GCash" aria-pressed="true">
+                    <div class="qr-preview relative overflow-hidden rounded-2xl"><img src="gcash-payment-qr-john-jacob-tamon.jpg" alt="GCash QR account for John Jacob Tamon" class="absolute h-auto"></div>
+                    <div class="mt-4 rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-center"><p class="text-xs uppercase tracking-[.14em] text-zinc-500">GCash receiver</p><p class="mt-1 font-display text-sm font-black text-cove-cream">JO*N JA**B T. · 0930 106 6863</p></div>
+                    <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                        <a id="save-gcash-qr" href="gcash-payment-qr-john-jacob-tamon.jpg" download="the-studio-cove-gcash-qr.jpg" class="inline-flex w-full items-center justify-center rounded-full bg-cove-sage px-4 py-3 text-center text-sm font-bold text-zinc-950 transition hover:bg-cove-cream">1. Save GCash QR</a>
+                        <a id="open-gcash" href="gcash://" class="inline-flex w-full items-center justify-center rounded-full border border-cove-sage/35 bg-cove-sage/[0.08] px-4 py-3 text-center text-sm font-bold text-cove-cream transition hover:border-cove-sage hover:bg-cove-sage/[0.14]">2. Open GCash App</a>
+                    </div>
+                </article>
+                <p id="wallet-message" class="mt-5 hidden rounded-xl border border-cove-sage/25 bg-cove-sage/[0.07] px-4 py-3 text-sm text-cove-mist" role="status" aria-live="polite"></p>
+                <p class="mt-4 text-center text-xs leading-5 text-zinc-500">Use two taps because mobile browsers may block an app launch when it happens automatically after a file download. In GCash, tap QR → Upload QR, then choose the saved image.</p>
+            </div>
+        </section>
+
+        <section class="border-y border-white/10 bg-black/15" id="proof">
+            <div class="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
+                <div>
+                    <p class="font-display text-xs font-bold uppercase tracking-[.18em] text-cove-sage">Verification</p>
+                    <h2 class="mt-3 font-display text-3xl font-black tracking-tight">Submit payment proof.</h2>
+                    <p class="mt-5 leading-7 text-zinc-400">After completing the transfer, enter your name and payment purpose, then upload a clear GCash receipt screenshot. That’s all we need.</p>
+                    <ul class="mt-7 space-y-3 text-sm leading-6 text-zinc-400"><li>• Screenshot must be JPG, PNG, or another image format.</li><li>• Maximum file size is 5 MB.</li><li>• Proof is stored privately in Google Drive.</li></ul>
+                </div>
+
+                <form id="proof-form" class="panel relative rounded-[2rem] p-5 sm:p-8" novalidate>
+                    <div class="absolute -left-[9999px]" aria-hidden="true"><label for="proof-website">Website</label><input id="proof-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+                    <div class="grid gap-5 sm:grid-cols-2">
+                        <div><label for="payer-name" class="mb-2 block text-sm font-bold text-zinc-200">Full Name <span class="text-cove-sage">*</span></label><input id="payer-name" name="fullName" type="text" autocomplete="name" required class="field w-full rounded-xl border border-white/10 bg-white/[0.055] px-4 py-3 text-cove-cream"></div>
+                        <div><label for="payment-purpose" class="mb-2 block text-sm font-bold text-zinc-200">Payment Purpose <span class="text-cove-sage">*</span></label><input id="payment-purpose" name="purpose" type="text" maxlength="240" required class="field w-full rounded-xl border border-white/10 bg-white/[0.055] px-4 py-3 text-cove-cream" placeholder="e.g. 50% project downpayment"></div>
+                        <div class="sm:col-span-2">
+                            <label for="proof-file" class="mb-2 block text-sm font-bold text-zinc-200">Payment Screenshot <span class="text-cove-sage">*</span></label>
+                            <label for="proof-file" class="flex cursor-pointer flex-col items-center rounded-xl border border-dashed border-white/20 bg-white/[0.035] px-5 py-7 text-center transition hover:border-cove-sage/50"><span class="font-display text-sm font-bold">Choose screenshot</span><span id="proof-file-name" class="mt-1 text-xs text-zinc-500">Image file · maximum 5 MB</span></label>
+                            <input id="proof-file" name="proofFile" type="file" accept="image/*" required class="sr-only">
+                        </div>
+                    </div>
+                    <button id="submit-proof" type="submit" class="mt-7 inline-flex w-full items-center justify-center rounded-full bg-cove-sage px-6 py-3.5 font-display text-sm font-black uppercase tracking-[.1em] text-zinc-950 transition hover:bg-cove-cream disabled:cursor-wait disabled:opacity-60">Submit Payment Proof</button>
+                    <p id="proof-error" class="mt-4 hidden rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200" role="alert"></p>
+                </form>
+            </div>
+        </section>
+
+        <section class="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+            <div class="rounded-[2rem] border border-cove-sage/25 bg-cove-sage/[0.07] p-6 sm:p-8"><p class="font-display text-xs font-bold uppercase tracking-[.18em] text-cove-sage">Standard policies</p><ul class="mt-5 grid gap-4 text-sm leading-6 text-zinc-300 sm:grid-cols-2"><li>• 50% upfront downpayment before work begins.</li><li>• 2 rounds of minor revisions included.</li><li>• 50% rush surcharge for under 24-hour turnaround.</li><li>• Final files delivered through Google Drive after full settlement.</li></ul></div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/10"><div class="mx-auto max-w-6xl px-5 py-8 text-center text-sm text-zinc-500 sm:px-8"><p>© <span id="year"></span> The Studio Cove. Built by John Jacob Tamon.</p></div></footer>
+
+    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-5 opacity-0 pointer-events-none transition" role="dialog" aria-modal="true" aria-labelledby="success-title">
+        <div class="modal-panel w-full max-w-md translate-y-4 scale-[.98] rounded-[2rem] border border-white/10 bg-zinc-900 p-7 shadow-2xl transition sm:p-9"><div class="flex h-12 w-12 items-center justify-center rounded-full bg-cove-sage text-xl font-black text-zinc-950">✓</div><p class="mt-6 text-xs font-bold uppercase tracking-[.18em] text-cove-sage">Proof submitted</p><h2 id="success-title" class="mt-2 font-display text-2xl font-black">Payment is ready for review.</h2><p class="mt-4 leading-7 text-zinc-400">The screenshot and transaction details were sent to The Studio Cove for manual verification.</p><button id="close-modal" type="button" class="mt-6 w-full rounded-full bg-cove-sage px-5 py-3 font-bold text-zinc-950 hover:bg-cove-cream">Done</button></div>
+    </div>
+
+    <script>
+        (() => {
+            // Add the new standalone Google Apps Script /exec URL after deployment.
+            const PAYMENT_API_URL = "";
+            const MAX_PROOF_BYTES = 5 * 1024 * 1024;
+            const walletMessage = document.getElementById("wallet-message");
+            const proofForm = document.getElementById("proof-form");
+            const proofFile = document.getElementById("proof-file");
+            const proofFileName = document.getElementById("proof-file-name");
+            const proofError = document.getElementById("proof-error");
+            const submitProofButton = document.getElementById("submit-proof");
+            const modal = document.getElementById("success-modal");
+            let bookingEmail = "";
+
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (!reducedMotion && "IntersectionObserver" in window) {
+                document.documentElement.classList.add("motion-ready");
+                const revealItems = document.querySelectorAll("main > section, .panel, .wallet-card");
+                revealItems.forEach((item, index) => {
+                    item.classList.add("reveal");
+                    item.style.setProperty("--reveal-delay", `${Math.min(index % 3, 2) * 80}ms`);
+                });
+                const revealObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        entry.target.classList.add("is-visible");
+                        revealObserver.unobserve(entry.target);
+                    });
+                }, { threshold:0.12, rootMargin:"0px 0px -40px" });
+                revealItems.forEach(item => revealObserver.observe(item));
+            }
+
+            try {
+                const booking = JSON.parse(sessionStorage.getItem("coveBooking") || "{}");
+                if (booking.fullName) document.getElementById("payer-name").value = booking.fullName;
+                if (booking.email) bookingEmail = booking.email;
+            } catch (error) {}
+
+            const saveGcashButton = document.getElementById("save-gcash-qr");
+            saveGcashButton.addEventListener("click", () => {
+                walletMessage.textContent = "New GCash QR saved. Now tap “Open GCash App,” choose QR, and upload the saved image from your gallery.";
+                walletMessage.classList.remove("hidden");
+                window.setTimeout(() => document.getElementById("open-gcash").focus(), 0);
+            });
+
+            document.getElementById("open-gcash").addEventListener("click", () => {
+                window.setTimeout(() => {
+                    if (document.visibilityState === "visible") window.location.href = "https://gcash.com/getting-started";
+                }, 1800);
+            });
+
+            proofFile.addEventListener("change", () => {
+                proofFileName.textContent = proofFile.files[0] ? proofFile.files[0].name : "Image file · maximum 5 MB";
+            });
+
+            const fileToBase64 = (file) => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(String(reader.result).split(",")[1]);
+                reader.onerror = () => reject(new Error("Could not read the screenshot."));
+                reader.readAsDataURL(file);
+            });
+
+            proofForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                if (!proofForm.checkValidity()) { proofForm.reportValidity(); return; }
+                const file = proofFile.files[0];
+                if (!file || file.size > MAX_PROOF_BYTES) {
+                    proofError.textContent = "Choose an image screenshot no larger than 5 MB.";
+                    proofError.classList.remove("hidden");
+                    return;
+                }
+                proofError.classList.add("hidden");
+                if (!PAYMENT_API_URL) {
+                    proofError.textContent = "Payment verification is temporarily unavailable while the secure form is being updated. Please try again soon.";
+                    proofError.classList.remove("hidden");
+                    return;
+                }
+                submitProofButton.disabled = true;
+                submitProofButton.textContent = "Uploading proof…";
+                const formData = new FormData(proofForm);
+                try {
+                    const payload = {
+                        type: "payment",
+                        fullName: formData.get("fullName").trim(),
+                        email: bookingEmail,
+                        purpose: formData.get("purpose").trim(),
+                        provider: "GCash",
+                        transactionReference: "See payment screenshot",
+                        inquiryId: "",
+                        website: formData.get("website"),
+                        proof: { name: file.name, type: file.type, data: await fileToBase64(file) }
+                    };
+                    await fetch(PAYMENT_API_URL, { method:"POST", mode:"no-cors", body:new URLSearchParams({ payload:JSON.stringify(payload) }) });
+                    proofForm.reset();
+                    proofFileName.textContent = "Image file · maximum 5 MB";
+                    modal.classList.add("modal-visible");
+                    document.body.classList.add("overflow-hidden");
+                    document.getElementById("close-modal").focus();
+                } catch (error) {
+                    proofError.textContent = "The proof could not be submitted. Check your connection and try again.";
+                    proofError.classList.remove("hidden");
+                } finally {
+                    submitProofButton.disabled = false;
+                    submitProofButton.textContent = "Submit Payment Proof";
+                }
+            });
+
+            document.getElementById("close-modal").addEventListener("click", () => {
+                modal.classList.remove("modal-visible");
+                document.body.classList.remove("overflow-hidden");
+            });
+        })();
+    </script>
+</body>
+</html>
