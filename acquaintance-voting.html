@@ -521,7 +521,7 @@
         <section class="results-grid" id="results" aria-live="polite" aria-busy="true">
             <div class="state-panel">
                 <h2>Loading results…</h2>
-                <p>The live spreadsheet connection has been disabled.</p>
+                <p>Getting the latest totals from the official response sheet.</p>
             </div>
         </section>
 
@@ -543,8 +543,8 @@
     </main>
 
     <script>
-        // Disabled so this page does not connect to a spreadsheet-backed endpoint.
-        const RESULTS_API_URL = "";
+        // This read-only endpoint remains available after the Google Form stops accepting responses.
+        const RESULTS_API_URL = "https://script.google.com/macros/s/AKfycbyng-ftFOT2OsuEIpKf9MAMeqkXA8W4ngosFOmEks7NLyz4kT1vCEHsPVqOGMO6ZtnE/exec";
         const AUTO_REFRESH_MS = 30_000;
 
         const resultsElement = document.querySelector("#results");
