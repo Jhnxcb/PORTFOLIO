@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#1e2022">
+  <title>Finance | The Studio Cove</title>
+  <link rel="icon" href="favicon.ico"><link rel="stylesheet" href="finance.css">
+  <script src="finance.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to balance</a>
+  <aside class="sidebar">
+    <a class="brand" href="index.html"><img src="the-studio-cove-logo-john-jacob-tamon.png" alt=""><span>The Studio Cove</span></a>
+    <nav aria-label="Finance navigation">
+      <a class="nav-item active" href="finance.html"><span aria-hidden="true">◫</span> Reports</a>
+      <div id="report-nav">
+      <a class="nav-item" href="#expenses"><span aria-hidden="true">↗</span> Expenses</a>
+      <a class="nav-item" href="#payments"><span aria-hidden="true">↙</span> Payments</a>
+      <a class="nav-item" href="#installments"><span aria-hidden="true">◷</span> Installments</a>
+      </div>
+    </nav>
+    <a class="sidebar-footer" href="index.html">← Back to portfolio</a>
+  </aside>
+  <div class="workspace">
+  <header class="topbar">
+    <a class="brand" href="index.html"><img src="the-studio-cove-logo-john-jacob-tamon.png" alt=""><span>The Studio Cove</span></a>
+    <span class="breadcrumb">Finance <span>/</span> Overview</span>
+    <button id="connect" class="button subtle">Refresh</button>
+  </header>
+  <main id="main">
+    <div class="account-heading">
+      <div><a id="back-reports" class="back-reports" href="finance.html" hidden>← All reports</a><h1 id="page-title">Finance</h1></div>
+      <div id="account-actions" class="account-actions" hidden><select id="account" aria-label="Financial sheet"></select><button id="share" class="icon-button" aria-label="Copy this sheet’s link" title="Copy sheet link">⧉</button></div>
+    </div>
+    <div id="notice" role="status" class="notice" hidden></div>
+    <div class="status-row"><div class="source-bar"><span id="source-status" role="status" aria-live="polite">Sample data · Not connected</span><span id="updated"></span></div><button id="refresh" class="icon-button" aria-label="Refresh balances" title="Refresh">↻</button></div>
+    <div id="report-filters" class="report-filters" hidden>
+      <label for="person-filter">Person<select id="person-filter"><option value="All">All people</option></select></label>
+      <label for="month-filter">Month<select id="month-filter"><option value="All">All months</option></select></label>
+      <button id="reset-filters" class="filter-reset" type="button" hidden>Clear filters</button>
+    </div>
+    <p id="filter-note" class="filter-note" role="status" hidden></p>
+    <section class="overview" aria-label="Balance summary">
+      <article class="summary-card remaining"><h2>Remaining balance <span aria-hidden="true">↗</span></h2><div id="balance" class="big-number">—</div><p id="balance-caption" hidden></p></article>
+      <article class="summary-card"><h2>Total charges <span aria-hidden="true">↗</span></h2><div id="charges" class="stat-number">—</div></article>
+      <article class="summary-card"><h2>Paid <span aria-hidden="true">✓</span></h2><div id="paid" class="stat-number">—</div></article>
+    </section>
+    <section id="reports-home" aria-labelledby="reports-title"><div class="details-heading"><h2 id="reports-title">Transparency reports</h2><span id="report-count" class="report-count"></span></div><div id="report-cards" class="report-grid"></div></section>
+    <div id="report-heading" class="details-heading" hidden><h2>Transactions</h2><input id="search" type="search" placeholder="Search" aria-label="Search expenses and payments"></div>
+    <section id="report-details" class="details-list" aria-label="Account details" hidden>
+      <section id="expenses" class="panel expenses" aria-labelledby="expenses-title"><div class="panel-heading"><h3 id="expenses-title">Charges</h3><small id="expense-count"></small></div><div class="detail-body"><div class="table-scroll"><table><thead><tr><th>Item</th><th>Group</th><th>Status</th><th class="numeric">Amount</th></tr></thead><tbody id="expense-rows"></tbody></table></div></div><div class="panel-total"><span>Total</span><strong id="expense-total"></strong></div></section>
+      <section id="payments" class="panel payments" aria-labelledby="payments-title"><div class="panel-heading"><h3 id="payments-title">Payments</h3><small id="payment-count"></small></div><div id="payment-list" class="detail-body"></div><div class="panel-total"><span>Total paid</span><strong id="payment-total"></strong></div></section>
+      <section id="installments" class="panel installments" aria-labelledby="installments-title"><div class="panel-heading"><div><h3 id="installments-title">Installments</h3><span class="separate">Separate balance</span></div><small id="plan-count"></small></div><div id="plans" class="detail-body"></div></section>
+    </section>
+    <p id="share-status" class="share-status" role="status" aria-live="polite"></p>
+    <footer>THE STUDIO COVE <span>PHP</span></footer>
+  </main>
+  </div>
+</body>
+</html>
